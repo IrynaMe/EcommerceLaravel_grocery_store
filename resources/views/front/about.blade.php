@@ -5,8 +5,8 @@
 <div class="products-breadcrumb">
 		<div class="container">
 			<ul>
-				<li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
-				<li>About Us</li>
+				<li><i class="fa fa-home" aria-hidden="true"></i><a href="{{url('/')}}">Home</a><span>|</span></li>
+				<li>Chi siamo</li>
 			</ul>
 		</div>
 	</div>
@@ -14,61 +14,7 @@
 <!-- banner -->
 	<div class="banner">
 		<div class="w3l_banner_nav_left">
-			<nav class="navbar nav_bottom">
-			 <!-- Brand and toggle get grouped for better mobile display -->
-			  <div class="navbar-header nav_2">
-				  <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				  </button>
-			   </div> 
-			   <!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-					<ul class="nav navbar-nav nav_1">
-						<li><a href="products.html">Branded Foods</a></li>
-						<li><a href="household.html">Households</a></li>
-						<li class="dropdown mega-dropdown active">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>	
-										<li><a href="vegetables.html">Vegetables</a></li>
-										<li><a href="vegetables.html">Fruits</a></li>
-									</ul>
-								</div>                  
-							</div>				
-						</li>
-						<li><a href="kitchen.html">Kitchen</a></li>
-						<li><a href="short-codes.html">Short Codes</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="drinks.html">Soft Drinks</a></li>
-										<li><a href="drinks.html">Juices</a></li>
-									</ul>
-								</div>                  
-							</div>	
-						</li>
-						<li><a href="pet.html">Pet Food</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="frozen.html">Frozen Snacks</a></li>
-										<li><a href="frozen.html">Frozen Nonveg</a></li>
-									</ul>
-								</div>                  
-							</div>	
-						</li>
-						<li><a href="bread.html">Bread & Bakery</a></li>
-					</ul>
-				 </div><!-- /.navbar-collapse -->
-			</nav>
+		@include('front/menuvert')
 		</div>
 		<div class="w3l_banner_nav_right">
 <!-- about -->
@@ -81,7 +27,7 @@
 				rerum facilis est et expedita distinctio.</p>
 			<div class="agile_about_grids">
 				<div class="col-md-6 agile_about_grid_right">
-					<img src="images/31.jpg" alt=" " class="img-responsive" />
+					<img src="tema/images/31.jpg" alt=" " class="img-responsive" />
 				</div>
 				<div class="col-md-6 agile_about_grid_left">
 					<ol>
@@ -107,7 +53,7 @@
 			<h3>Meet Our Amazing Team</h3>
 			<div class="agileits_team_grids">
 				<div class="col-md-3 agileits_team_grid">
-					<img src="images/32.jpg" alt=" " class="img-responsive" />
+					<img src="tema/images/32.jpg" alt=" " class="img-responsive" />
 					<h4>Martin Paul</h4>
 					<p>Manager</p>
 					<ul class="agileits_social_icons agileits_social_icons_team">
@@ -117,7 +63,7 @@
 					</ul>
 				</div>
 				<div class="col-md-3 agileits_team_grid">
-					<img src="images/33.jpg" alt=" " class="img-responsive" />
+					<img src="tema/images/33.jpg" alt=" " class="img-responsive" />
 					<h4>Michael Rick</h4>
 					<p>Supervisor</p>
 					<ul class="agileits_social_icons agileits_social_icons_team">
@@ -127,7 +73,7 @@
 					</ul>
 				</div>
 				<div class="col-md-3 agileits_team_grid">
-					<img src="images/34.jpg" alt=" " class="img-responsive" />
+					<img src="tema/images/34.jpg" alt=" " class="img-responsive" />
 					<h4>Thomas Carl</h4>
 					<p>Supervisor</p>
 					<ul class="agileits_social_icons agileits_social_icons_team">
@@ -137,7 +83,7 @@
 					</ul>
 				</div>
 				<div class="col-md-3 agileits_team_grid">
-					<img src="images/35.jpg" alt=" " class="img-responsive" />
+					<img src="tema/images/35.jpg" alt=" " class="img-responsive" />
 					<h4>Laura Lee</h4>
 					<p>CEO</p>
 					<ul class="agileits_social_icons agileits_social_icons_team">
@@ -211,7 +157,7 @@
 							</article>
 						</div>
 					</div>
-					<script src="js/jquery.wmuSlider.js"></script> 
+					<script src="tema/js/jquery.wmuSlider.js"></script> 
 					<script>
 						$('.example1').wmuSlider();         
 					</script> 

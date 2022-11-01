@@ -5,8 +5,8 @@
 <div class="products-breadcrumb">
 		<div class="container">
 			<ul>
-				<li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
-				<li>Branded Foods</li>
+				<li><i class="fa fa-home" aria-hidden="true"></i><a href="{{url('/')}}">Home</a><span>|</span></li>
+				<li>Prodotti</li>
 			</ul>
 		</div>
 	</div>
@@ -14,61 +14,7 @@
 <!-- banner -->
 	<div class="banner">
 		<div class="w3l_banner_nav_left">
-			<nav class="navbar nav_bottom">
-			 <!-- Brand and toggle get grouped for better mobile display -->
-			  <div class="navbar-header nav_2">
-				  <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				  </button>
-			   </div> 
-			   <!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-					<ul class="nav navbar-nav nav_1">
-						<li><a href="products.html">Branded Foods</a></li>
-						<li><a href="household.html">Households</a></li>
-						<li class="dropdown mega-dropdown active">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>				
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>	
-										<li><a href="vegetables.html">Vegetables</a></li>
-										<li><a href="vegetables.html">Fruits</a></li>
-									</ul>
-								</div>                  
-							</div>				
-						</li>
-						<li><a href="kitchen.html">Kitchen</a></li>
-						<li><a href="short-codes.html">Short Codes</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="drinks.html">Soft Drinks</a></li>
-										<li><a href="drinks.html">Juices</a></li>
-									</ul>
-								</div>                  
-							</div>	
-						</li>
-						<li><a href="pet.html">Pet Food</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
-							<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="frozen.html">Frozen Snacks</a></li>
-										<li><a href="frozen.html">Frozen Nonveg</a></li>
-									</ul>
-								</div>                  
-							</div>	
-						</li>
-						<li><a href="bread.html">Bread & Bakery</a></li>
-					</ul>
-				 </div><!-- /.navbar-collapse -->
-			</nav>
+		@include('front/menuvert')
 		</div>
 		<div class="w3l_banner_nav_right">
 			<div class="w3l_banner_nav_right_banner3">
@@ -77,7 +23,7 @@
 			<div class="w3l_banner_nav_right_banner3_btm">
 				<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
 					<div class="view view-tenth">
-						<img src="images/13.jpg" alt=" " class="img-responsive" />
+						<img src="tema/images/13.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
 							<h4>Grocery Store</h4>
 							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
@@ -92,7 +38,7 @@
 				</div>
 				<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
 					<div class="view view-tenth">
-						<img src="images/14.jpg" alt=" " class="img-responsive" />
+						<img src="tema/images/14.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
 							<h4>Grocery Store</h4>
 							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
@@ -107,7 +53,7 @@
 				</div>
 				<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
 					<div class="view view-tenth">
-						<img src="images/15.jpg" alt=" " class="img-responsive" />
+						<img src="tema/images/15.jpg" alt=" " class="img-responsive" />
 						<div class="mask">
 							<h4>Grocery Store</h4>
 							<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
@@ -130,7 +76,7 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
@@ -166,7 +112,7 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
@@ -202,13 +148,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/7.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/7.png" alt=" " class="img-responsive" /></a>
 											<p>lahsun sev (150 gm)</p>
 											<h4>$3.00 <span>$5.00</span></h4>
 										</div>
@@ -238,13 +184,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/8.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/8.png" alt=" " class="img-responsive" /></a>
 											<p>premium bake rusk (300 gm)</p>
 											<h4>$5.00 <span>$7.00</span></h4>
 										</div>
@@ -278,13 +224,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/9.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/9.png" alt=" " class="img-responsive" /></a>
 											<p>fresh spinach (palak)</p>
 											<h4>$2.00 <span>$3.00</span></h4>
 										</div>
@@ -314,13 +260,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/10.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/10.png" alt=" " class="img-responsive" /></a>
 											<p>fresh mango dasheri (1 kg)</p>
 											<h4>$5.00 <span>$8.00</span></h4>
 										</div>
@@ -349,12 +295,12 @@
 					<div class="col-md-3 w3ls_w3l_banner_left">
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-							<div class="tag"><img src="images/tag.png" alt=" " class="img-responsive" /></div>
+							<div class="tag"><img src="tema/images/tag.png" alt=" " class="img-responsive" /></div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/11.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/11.png" alt=" " class="img-responsive" /></a>
 											<p>fresh apple red (1 kg)</p>
 											<h4>$6.00 <span>$8.00</span></h4>
 										</div>
@@ -384,13 +330,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/12.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/12.png" alt=" " class="img-responsive" /></a>
 											<p>fresh broccoli (500 gm)</p>
 											<h4>$4.00 <span>$6.00</span></h4>
 										</div>
@@ -424,13 +370,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/13.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/13.png" alt=" " class="img-responsive" /></a>
 											<p>mixed fruit juice (1 ltr)</p>
 											<h4>$3.00 <span>$4.00</span></h4>
 										</div>
@@ -460,13 +406,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/14.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/14.png" alt=" " class="img-responsive" /></a>
 											<p>prune juice - sunsweet (1 ltr)</p>
 											<h4>$4.00 <span>$5.00</span></h4>
 										</div>
@@ -495,12 +441,12 @@
 					<div class="col-md-3 w3ls_w3l_banner_left">
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-							<div class="tag"><img src="images/tag.png" alt=" " class="img-responsive" /></div>
+							<div class="tag"><img src="tema/images/tag.png" alt=" " class="img-responsive" /></div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/15.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/15.png" alt=" " class="img-responsive" /></a>
 											<p>coco cola zero can (330 ml)</p>
 											<h4>$3.00 <span>$5.00</span></h4>
 										</div>
@@ -530,13 +476,13 @@
 						<div class="hover14 column">
 						<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
-								<img src="images/offer.png" alt=" " class="img-responsive" />
+								<img src="tema/images/offer.png" alt=" " class="img-responsive" />
 							</div>
 							<div class="agile_top_brand_left_grid1">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">
-											<a href="single.html"><img src="images/16.png" alt=" " class="img-responsive" /></a>
+											<a href="single.html"><img src="tema/images/16.png" alt=" " class="img-responsive" /></a>
 											<p>sprite bottle (2 ltr)</p>
 											<h4>$3.00 <span>$4.00</span></h4>
 										</div>

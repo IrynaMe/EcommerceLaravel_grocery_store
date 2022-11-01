@@ -11,6 +11,7 @@ In questa cartella copio tutte le cartelle del tema: css, font, images, js
 2) step 
 vado in resources /views creo una cartella front, in cui mettero i file di front  end del tema
 about.blade.php, cart.blade.php, home.blade.php, login.blade.php, pagamenti.blade.php, shop.blade.php
+mail.blade.php
 
 Tutti questi file hanno la struttura 
 @extends('front.layout')
@@ -27,22 +28,9 @@ layout.blade.php (vedi risoluzione  bug)
 @yield('content')
 {{-- end content --}}
 
-Mentre il file che contengono  il menu orizzontale e quello verticale, sono richiamati 
-in layout.blade.php, attraverso istruzione @include
-<!-- //script-for sticky-nav -->
-{{-- menu orizzontale --}}
-@include('front/menu')
-    {{-- fine menu orizzontale --}}
-<!-- //header -->
-<!-- banner -->
-<div class="banner">
-    <div class="w3l_banner_nav_left">
-    {{-- menu verticale --}}
-        @include('front/menuvert')  
-        {{-- fine menu verticale --}}
-    </div>
 
-4) step
+
+3) step
 In routes, nel file web.php, creo il routing dei files 
 
 Route::get('/', [TemaController::class, 'home']);
@@ -59,16 +47,14 @@ Cioe' viene indirizzato al file TemaController.php che ristiurà le viste dei fi
 Da notare in cart e login sono presenti dei form, che passano i dati con il metodo post
 e non get, quindi Route::any
 ----------------------------------------------------------
-Nei form va inoltre aggiunta la istruzione 	@csrf, poi 
-<form action="/cart" method="post" class="last">
 
-Nel menu istruzioni del tipo 
-<li><a href="{{ url('/about') }}">Chi siamo</a><i>/</i></li>
+
+
 
 In testa al file web.php, va dichiarato uso del controller , attraverso 
 use App\Http\Controllers\TemaController;
 
-5) step 
+4) step 
 Con il comando a terminale 
 php artisan make:controller TemaController 
 Creo un controller in app/Http/Controllers, 
@@ -113,3 +99,58 @@ class TemaController extends Controller
         return view('front.login');
     }
 }
+ 5) step
+ 
+ Un altro passo è quello di isolare il menu orizzontale e quello verticale.
+Quindi nella cartella front creo due file 
+-menu.blade.php
+-menuvert.blade.php
+
+Nel primo copio il menu orizzonatele e lo ristrutturo con le voci 
+-Grocery, chi siamo,Contatti,  prodotti . Modifico il link alla mail 
+Ogni url  <li><a href="{{ url('/shop') }}">Prodotti</a></li>
+Questa notazione  vine passata al routing che richiama la funzione equivalente 
+in TemaController. TemaController ritorna la vista rischiesta
+I file front/menu.blade.php e front/menuvert.blade. php sono richiamati in layout.blade.php 
+attrverso     @include('front/menu')
+
+
+<!-- //script-for sticky-nav -->
+{{-- menu orizzontale --}}
+@include('front/menu')
+    {{-- fine menu orizzontale --}}
+<!-- //header -->
+<!-- banner -->
+<div class="banner">
+    <div class="w3l_banner_nav_left">
+    {{-- menu verticale --}}
+        @include('front/menuvert')  
+        {{-- fine menu verticale --}}
+    </div>
+    
+    Nel menu istruzioni del tipo 
+<li><a href="{{ url('/about') }}">Chi siamo</a><i>/</i></li>
+    <li><a href="{{ url('/mail') }}">Contatti</a><i>/</i></li>
+
+6 step
+Protezione dagli attacchi sql injection 
+Nei form va inoltre aggiunta la istruzione 	@csrf, 
+
+Esempio 
+<form action="/cart" method="post" class="last">
+@csrf
+
+https://laravel.com/docs/9.x/csrf
+
+
+
+7 CAche
+https://laravel.com/docs/9.x/cache
+
+ci sono cache :
+-di browser
+-di app(laravel)
+commando per pulire cache al terminalephp artisan cache:clear
+anche puliamo cache a mano da 
+-storage/framework/views
+-storage/framework/logs
