@@ -1,0 +1,143 @@
+In questa parte aggiungiamo tutti i file che sono necessari per il front end del sito Ecommerce laravel
+
+https://laravel.com/docs/5.0/templates
+-----------------------------------
+layout.blade.php 
+---------------------------------
+1) step 
+Nella cartella public, creo una sottocartella tema.
+In questa cartella copio tutte le cartelle del tema: css, font, images, js 
+
+2) step 
+vado in resources /views creo una cartella front, in cui mettero i file di front  end del tema
+about.blade.php, cart.blade.php, home.blade.php, login.blade.php, pagamenti.blade.php, shop.blade.php
+mail.blade.php
+
+Tutti questi file hanno la struttura 
+@extends('front.layout')
+@section('content')
+--contenuto della pagina----
+@endsection
+
+In altre parole richiamano la parte comune (header e footer ), contenuta in layout.blade.php 
+In layout.blade.php, sono richiamate le parte comuni, attraverso
+-----------------------------------
+layout.blade.php (vedi risoluzione  bug)
+---------------------------------
+{{-- content--}}
+@yield('content')
+{{-- end content --}}
+
+
+
+3) step
+In routes, nel file web.php, creo il routing dei files 
+
+Route::get('/', [TemaController::class, 'home']);
+Route::get('/mail', [TemaController::class, 'mail']);
+Route::get('/about', [TemaController::class, 'about']);
+Route::any('/cart', [TemaController::class, 'cart']);
+Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
+Route::get('/shop', [TemaController::class, 'shop']);
+Route::any('/login', [TemaController::class, 'login']);
+
+
+
+Cioe' viene indirizzato al file TemaController.php che ristiurà le viste dei files 
+Da notare in cart e login sono presenti dei form, che passano i dati con il metodo post
+e non get, quindi Route::any
+----------------------------------------------------------
+
+
+
+
+In testa al file web.php, va dichiarato uso del controller , attraverso 
+use App\Http\Controllers\TemaController;
+
+4) step 
+Con il comando a terminale 
+php artisan make:controller TemaController 
+Creo un controller in app/Http/Controllers, 
+che ha come compito di essere richiamato da 
+web.php e restiure lke viste 
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class TemaController extends Controller
+{
+    public function home()
+    {
+        return view('front.home');
+    }
+    public function mail()
+    {
+        return view('front.mail');
+    }
+    public function about()
+    {
+        return view('front.about');
+    }
+    public function cart()
+    {
+        return view('front.cart');
+    }
+    
+    public function pagamenti()
+    {
+        return view('front.pagamenti');
+    }
+    public function shop()
+    {
+        return view('front.shop');
+    }
+    public function login()
+    {
+        return view('front.login');
+    }
+}
+ 5) step
+ 
+ Un altro passo è quello di isolare il menu orizzontale e quello verticale.
+Quindi nella cartella front creo due file 
+-menu.blade.php
+-menuvert.blade.php
+
+Nel primo copio il menu orizzonatele e lo ristrutturo con le voci 
+-Grocery, chi siamo,Contatti,  prodotti . Modifico il link alla mail 
+Ogni url  <li><a href="{{ url('/shop') }}">Prodotti</a></li>
+Questa notazione  vine passata al routing che richiama la funzione equivalente 
+in TemaController. TemaController ritorna la vista rischiesta
+I file front/menu.blade.php e front/menuvert.blade. php sono richiamati in layout.blade.php 
+attrverso     @include('front/menu')
+
+
+<!-- //script-for sticky-nav -->
+{{-- menu orizzontale --}}
+@include('front/menu')
+    {{-- fine menu orizzontale --}}
+<!-- //header -->
+<!-- banner -->
+<div class="banner">
+    <div class="w3l_banner_nav_left">
+    {{-- menu verticale --}}
+        @include('front/menuvert')  
+        {{-- fine menu verticale --}}
+    </div>
+    
+    Nel menu istruzioni del tipo 
+<li><a href="{{ url('/about') }}">Chi siamo</a><i>/</i></li>
+    <li><a href="{{ url('/mail') }}">Contatti</a><i>/</i></li>
+
+6 step
+Protezione dagli attacchi sql injection 
+Nei form va inoltre aggiunta la istruzione 	@csrf, 
+
+Esempio 
+<form action="/cart" method="post" class="last">
+@csrf
+
+https://laravel.com/docs/9.x/csrf

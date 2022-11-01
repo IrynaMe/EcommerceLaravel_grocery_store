@@ -20,3 +20,9 @@ use App\Http\Controllers\TemaController;
  */
 
 Route::get('/', [TemaController::class, 'home']);
+Route::get('/mail', [TemaController::class, 'mail']);
+Route::get('/about', [TemaController::class, 'about']);
+Route::any('/cart', [TemaController::class, 'cart']);
+Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
+Route::get('/shop', [TemaController::class, 'shop']);
+Route::any('/login', [TemaController::class, 'login']);
