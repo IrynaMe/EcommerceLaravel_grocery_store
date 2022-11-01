@@ -1,0 +1,27 @@
+-----comandi a terminale-------
+commandi di iniziallizazione del proggetto
+
+cd /Applications/MAMP/htdocs
+htdocs% composer create-project laravel/laravel Ecommerce
+composer create-project --prefer-dist laravel/laravel:^8.0 Ecommlaravel
+
+
+installare area privata
+------------------------------------------   //salto per adesso questo passaggio
+cd Ecommerce
+Ecommerce % composer require laravel/breeze --dev
+Ecommerce % php artisan breeze:install
+
+comandi a terminale per autenzificazione del laravel https://laravel.com/docs/8.x/starter-kits
+
+
+------------------------------------------
+Ecommerce % npm install && npm run dev   // to install node modules (libreria)
+Ecommerce % npm install -g npm    // non eseguita
+
+Ecommerce % composer require laravelcollective/html // install package to manage 
+https://github.com/LaravelCollective/html
+
+Ecommerce % php artisan serve
+nel browser: 
+ http://127.0.0.1:8000
