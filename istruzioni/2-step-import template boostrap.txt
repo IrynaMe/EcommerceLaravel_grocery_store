@@ -1,0 +1,36 @@
+Questo step è il primo per importare un template di bootstrap nel progetto di laravel
+
+ho scaricato il thema
+https://w3layouts.com/download-template/?template=42945
+
+I passaggi aterminale sono stati
+
+1)Nella cartella resources/views/front creare un file home.blade.php
+In questo file ho copiato tutto il codice html di un tema ecommmerce di bootstrap
+
+2)Nella cartella public/tema ho copiato le cartelle 
+css, js, fonts, images del tema di bootstrap (scaricata)
+in home.blade.php ho cambiato i riferimenti. 
+Ad esempio
+ link href="css/bootstrap.css"  cambiato con 
+ link href="tema/css/bootstrap.css"
+ Stessa cosa per js e Images
+
+3)Con il comando a terminale ho creato un controller
+php artisan make:controller TemaController
+Questo controller si trova in app/Http/Controller/TemaController
+
+4)In routes/web.php ho modificato il file 
+ Route::get('/', [TemaController::class, 'home']);
+ Nello stesso file va specifiacto che useremo un controller
+ Quindi in testata: use App\Http\Controllers\TemaController;
+ 
+ 5) in TemaController.php ho creato una function home (la stessa chiamata in web.php)
+    public function home()
+        {
+            return view('front.home');
+        }
+        
+ 6) richiamando nel terminale php artisan serve e nel browser: http://127.0.0.1:8000
+ si vede cosi' la home page html copiata da un tema di bootstrap 
+ 
