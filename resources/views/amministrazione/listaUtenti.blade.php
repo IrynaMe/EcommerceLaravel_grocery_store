@@ -11,10 +11,8 @@
         <div class="col-md-8 offset-md-1">
             <div class="alert alert-primary" role="alert">
                 @if (Session::has('success'))
-
                     {{ Session::get('success') }}
                     {{ Session::put('success', null) }}
-
                 @endif
             </div>
             <br>
@@ -28,8 +26,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($customers as $customer)
-                        <tr class="text-center">
+                    {{-- @foreach ($customers as $customer) --}}
+                    {{-- <tr class="text-center">
                             <td scope="col">{{ $customer->email }}</td>
 
                             <td scope="col">
@@ -42,10 +40,10 @@
                                 <a href="/delete/{{ $customer->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
-                            </td>
+                            </td> --}}
 
-                        </tr>
-                    @endforeach
+                    {{-- </tr> --}}
+                    {{-- @endforeach --}}
                     {{-- {{ $customers->links() }} --}}
 
 
@@ -54,7 +52,7 @@
         </tbody>
         </table>
         <div class="d-flex justify-content-center">
-            {!! $customers->links() !!}
+            {{-- {!! $customers->links() !!} --}}
 
         </div>
     </div>
