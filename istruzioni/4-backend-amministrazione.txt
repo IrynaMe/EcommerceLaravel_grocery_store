@@ -1,0 +1,85 @@
+In questa parte ho creato il backend di aministrazione, ancora statico
+1)step
+public/ammne
+In questa cartella ho messo:
+    ammne: contiene le cartelle css e js che usero' nei template di contenuti in 
+    resources/views/amministrazione
+    
+   2 step
+   in  resources/views/amministrazione ho creato i vari files blade che mi servono 
+   header e footer sono la parte comune e li ho incluso nei vari file usando tipo:
+   
+        @include('amministrazione/header')
+        @include('amministrazione/menu')
+        @include('amministrazione/form_user')
+        @include('amministrazione/footer')
+   
+   3step 
+   Per linkare alle risorse esterne in header e footer ho usato
+       ckeditor: <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+       <link rel="stylesheet" href="ammne/css/style.css">  
+       <script src="ammne/js/controllo_log.js"></script>
+       
+4 step 
+web.php in routes 
+
+
+Route::any('/admin', [AdminController::class, 'home']);
+Route::any('/dashboard', [AdminController::class, 'dashboard']);
+Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
+Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
+Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
+Route::get('/ordini', [AdminController::class, 'ordini']);
+
+da notare in web.php 
+
+    use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\TemaController;
+    use App\Http\Controllers\AdminController;
+
+
+
+
+5 step 
+
+Creo un controller
+php artisan make:controller AdminController
+
+Che poi compilo come segue 
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class AdminController extends Controller
+{
+    public function home()
+    {
+        return view('amministrazione.home');
+    }
+    public function dashboard()
+    {
+        return view('amministrazione.dashboard');
+    }
+    
+    public function creaProdotti()
+    {
+        return view('amministrazione.creaProdotti');
+    }
+    
+    public function listaUtenti()
+    {
+        return view('amministrazione.listaUtenti');
+    }
+    public function ordini()
+    {
+        return view('amministrazione.ordini');
+    }
+
+    public function creaUtenti()
+    {
+        return view('amministrazione.creaUtenti');
+    }
+}

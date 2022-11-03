@@ -1,0 +1,127 @@
+dopo aver lavorato sul front end adesso lavoro sulle query nel db
+
+1 step
+Creo un Db in Mamp che chiamo laravel
+Poi in env.php (nella route di Ecommerce), scrivo 
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=root
+DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock
+
+2 step 
+In questo Db devo creare una tabella, attraverso un model che cro a terminale 
+ php artisan make:model Customer -m
+ 
+In questo modo si creano due file.
+App/Models/customer.php
+database/migration/2022_01_26_161811_create_customers_table.php
+In questo ultimo file creo la tabella 
+ public function up()
+    {
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id();
+            $table->string('email');
+            $table->string('password');
+            $table->string('nome');
+            $table->string('cognome');
+            $table->string('indirizzo');
+            $table->string('citta');
+            $table->string('nazione');
+            $table->timestamps();
+        });
+    }
+Invece in App/Providers/AppServiceProvider
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Pagination\Paginator;
+
+    public function boot()
+    {
+        Schema::defaultStringLength(255);
+        Paginator::useBootstrap();
+    }
+    
+cosi da definire la lunghezza della stringa 
+La parte Paginator sevirà invece poi a si usa 
+per costruire lei link di pagination, usando bootstrap 
+
+poi a terminale : php artisan migrate
+
+si crea cosi la tabella che popolo con il comando  php artisan tinker
+con questo comando creo prima un istanza 
+$customer= new App\Models\Customer   poi
+$cusutomer->email= 'admin@test.it'
+etc...
+
+
+3 step 
+Per eseguire un query nel DB e ritrovare gli utenti registrati nel DB, nel file listaUtenti.php
+vado nel controller Appa/Http/Controllers/AdminController.php
+E applico i due possibili metodi
+-query builder
+-Models eloquent
+
+use Illuminate\Http\Request;
+//nel caso si utilizzi il metodo query builder
+use Illuminate\Support\Facades\DB;
+//nel caso si utilizzi per le query i models 
+use App\Models\Customer;
+Poi 
+
+   public function listaUtenti()
+    {
+        //query  builder
+        // $customers= DB::table('customers')
+        //      ->get();
+        // $customers= DB::table('customers')
+        //      ->simplePaginate(1);
+        //eloquent che richiede use App\Models\Customer
+        //$customers = Customer::get();
+        
+        // oppure: Models Eloquent
+        //$customers = Customer::all();
+        //$customers = Customer::orderBy('email', 'asc')->get();
+        //$customers = Customer::orderBy('email', 'asc')->paginate(1);
+        
+        $customers = Customer::paginate(1);
+        return view('amministrazione.listaUtenti')->with('customers', $customers);
+    }
+    4 step 
+    Per visualizzare nella forma pagination, i risultati della query 
+    in resources/views/views/amministrazione/listaUtenti.blade.php
+    
+            
+                    @foreach ($customers as $customer)
+                        <tr class="text-center">
+                            <td scope="col">{{ $customer->email }}</td>
+                            <td scope="col"> <i class="fas fa-edit"></i></td>
+                            <td scope="col"> <i class="fas fa-trash-alt"></i></td>
+                        </tr>
+                    @endforeach
+                    {{-- {{ $customers->links() }} --}}
+
+
+        <div class="d-flex justify-content-center">
+            {!! $customers->links() !!}
+
+        </div>
+ Non dimenticando che i links sono creati con bootstrap. Infatti in 
+ AppServiceProvider.php
+ 
+ use Illuminate\Pagination\Paginator;
+ 
+   public function boot()
+    {
+        Schema::defaultStringLength(255);
+        Paginator::useBootstrap();
+    }
+    
+
+
+

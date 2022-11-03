@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemaController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,13 @@ Route::any('/cart', [TemaController::class, 'cart']);
 Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
 Route::any('/login', [TemaController::class, 'login']);
+
+
+
+
+Route::any('/admin', [AdminController::class, 'home']);
+Route::any('/dashboard', [AdminController::class, 'dashboard']);
+Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
+Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
+Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
+Route::get('/ordini', [AdminController::class, 'ordini']);
