@@ -11,11 +11,12 @@ DB_USERNAME=root
 DB_PASSWORD=root
 DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock
 
-per Windows questa ultima istruzione (DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock) non serve
-in alternativa serve pero modificare php.ini-in versione di php che e in uso:
-al terminale php --ini(indica dove si trova php ini)
-scommentare extension=pdo_mysql.dll 
 
+Per windows questa ultima istruzione NON serve serve pero' modfifcare php.ini 
+quindi a ternminale php --ini indica dove è il file php.ini (php info )
+Identificato il file php.ini occorre scommentare (togliere ;) l'estensione pdo_mysql
+Spengo e accendo MAMP
+https://www.youtube.com/watch?v=B3rVfhPMo_0
 
 2 step 
 In questo Db devo creare una tabella, attraverso un model che cro a terminale 
@@ -53,27 +54,28 @@ use Illuminate\Pagination\Paginator;
         Paginator::useBootstrap();
     }
     
-cosi da definire la lunghezza della stringa 
-La parte Paginator sevirà invece poi a si usa 
+Con la prima istruzone definisco che di default la lunghezza della stringa
+nella tabella Customers nel Laravel 3 e di 255
+
+Con la seconda La parte Paginator   si usa 
 per costruire lei link di pagination, usando bootstrap 
 
 poi a terminale : php artisan migrate
+Con questo comando nel DB laravel3 comparira la tabelle cusomer 
+php artisan migrate:rollback
+E' il comando di annulamento della migrazione 
 
-si crea cosi la tabella che popolo con il comando  php artisan tinker
+si crea cosi la tabella che popolo con il comando  
 
+php artisan tinker
 
-
-$customer= new App\Models\Customer   //con questo comando creo prima un istanza 
-
-$customer->email= 'admin@test.it'  //compillo tutti i campi
-$customer->password= 'Admin123' // e64b78fc3bc91bcbc7dc232ba8ec59e
-$customer->nome= 'Iryna'
-$customer->cognome= 'Melnikava'
-$customer->indirizzo= 'piazza Duomo'
-$customer->citta= 'Roma'
-$customer->nazione= 'italia'
-$customer->save()
+con questo comando creo prima un istanza 
+$customer= new App\Models\Customer   poi
+$customer->email= 'admin@test.it'
 etc...
+$customer->save()
+
+https://www.laramind.com/blog/laravel-migration-approfondimenti/esami_laboratorio
 
 3 step 
 Per eseguire un query nel DB e ritrovare gli utenti registrati nel DB, nel file listaUtenti.php
@@ -104,9 +106,14 @@ Poi
         //$customers = Customer::orderBy('email', 'asc')->get();
         //$customers = Customer::orderBy('email', 'asc')->paginate(1);
         
+        //torna il risiultato della query organizzato per pagina 1 = un record per ogni pagination
         $customers = Customer::paginate(1);
+        //ritorna la vista aggiungendo il risultato della query 
         return view('amministrazione.listaUtenti')->with('customers', $customers);
     }
+    pagination in php
+    https://www.codexworld.com/php-pagination-class-with-mysql/
+    
     4 step 
     Per visualizzare nella forma pagination, i risultati della query 
     in resources/views/views/amministrazione/listaUtenti.blade.php
@@ -137,6 +144,33 @@ Poi
         Paginator::useBootstrap();
     }
     
+-----------------------------------------
 
+Differenza Query PHP e Laravel
+
+Creo un Db 
+•	PHP, a mano 
+•	Laravel a mano 
+
+Mi collego al DB  
+•	PHP istanza della classe PDO, 
+•	Laravel file env.php
+
+Creo una tabella Customer del DB: 
+•	PHP a mano, 
+•	Laravel con le migrazioni (MODEL) Punto 2 delle istruzioni
+
+Popolo la tabella customers: 
+•	PHP a mano 
+•	Laravel il comando php tinker (pto 2) o  a mano
+
+Estraggo i dati dalla tabella: 
+•	PHP eseguo la query SELECT *, 
+•	Laravel metodo statico all della classe Customer creata quando abbiamo usato il comando
+Php artisan make:model Customer. Questo grazie alla libreria Eloquent di Laravel 
+
+Visualizzo il risultato della Query 
+•	PHP WHILE ($row=FETCH..) per visualizzare il contenuto del DB
+•	In laravel foreach passando il risultato della query in AdminController
 
 

@@ -26,8 +26,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($customers as $customer) --}}
-                    {{-- <tr class="text-center">
+                    @foreach ($customers as $customer)
+                    <tr class="text-center">
                             <td scope="col">{{ $customer->email }}</td>
 
                             <td scope="col">
@@ -40,11 +40,14 @@
                                 <a href="/delete/{{ $customer->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
-                            </td> --}}
+                            </td>
 
-                    {{-- </tr> --}}
-                    {{-- @endforeach --}}
-                    {{-- {{ $customers->links() }} --}}
+                   </tr> 
+                    @endforeach
+                    <div class="d-flex justify-content-center">
+                        {{ $customers->links() }} 
+                    </div>
+                   
 
 
         </div>
@@ -52,7 +55,7 @@
         </tbody>
         </table>
         <div class="d-flex justify-content-center">
-            {{-- {!! $customers->links() !!} --}}
+           {!! $customers->links() !!} 
 
         </div>
     </div>
