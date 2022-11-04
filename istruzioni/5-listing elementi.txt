@@ -11,6 +11,12 @@ DB_USERNAME=root
 DB_PASSWORD=root
 DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock
 
+per Windows questa ultima istruzione (DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock) non serve
+in alternativa serve pero modificare php.ini-in versione di php che e in uso:
+al terminale php --ini(indica dove si trova php ini)
+scommentare extension=pdo_mysql.dll 
+
+
 2 step 
 In questo Db devo creare una tabella, attraverso un model che cro a terminale 
  php artisan make:model Customer -m
@@ -54,11 +60,14 @@ per costruire lei link di pagination, usando bootstrap
 poi a terminale : php artisan migrate
 
 si crea cosi la tabella che popolo con il comando  php artisan tinker
+
+
 con questo comando creo prima un istanza 
 $customer= new App\Models\Customer   poi
-$cusutomer->email= 'admin@test.it'
-etc...
+$customer->email= 'admin@test.it'
 
+$customer->password= 'Admin123'
+etc...
 
 3 step 
 Per eseguire un query nel DB e ritrovare gli utenti registrati nel DB, nel file listaUtenti.php
