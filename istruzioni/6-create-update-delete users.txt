@@ -1,0 +1,104 @@
+In questo passo 
+ create-update-delete users
+ 
+ 1 step create 
+ File creaProdotti.blade.php, che include amministrazione/form_user
+ nel form action="{{ url('/salvaUtenti') }}"
+ <input type="text" class="form-control form-control-sm" id="email_utente" name="email_utente">
+ <input type="password" class="form-control form-control-sm" id="psw_utente" name="psw_utente">
+ In web.php Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
+ In AdminController.php 
+   public function salvaUtenti(Request $request)
+     {
+         $customer = new Customer();
+         $customer->email=$request->email_utente;
+         $customer->password = md5($request->psw_utente);
+         $customer->save();
+     
+         Session::put('success', 'Utente creato');
+        
+         return redirect('/creaUtenti');
+
+         // return view('amministrazione.salvaUtenti');
+     }
+     da notare la funzione      
+         Session::put('success', 'Utente creato'); per creare messaggio, poi ripreso 
+         in creaUtenti.blade.php 
+         @if (Session::has('success'))
+
+                    {{ Session::get('success') }}
+                    {{ Session::put('success', null) }}
+
+                @endif
+2 step update 
+
+I passaggi sono:
+-clicco su pulante modifica di listaUtenti
+-passo ID utente da modificare nel URL (metodo GET)
+-faccio una query nel DB dove id = quello del punto precedente 
+-Ottengo i dati della query (email ) e li metto nel value di un input
+-eseguo una funzione update, torno alla lista che mi mostra il dato modificato
+
+Tutto questo fatto con il sistema  di laravel (routing, controller)  
+Le query eseguite con il sistema Eloquent di laravel 
+
+
+File di inzio listaUtenti.blade.php cliccado su icona modifica passo ID attraverso URL
+<td scope="col">
+<a href="/editCustomer/{{ $customer->id }}">
+<i class="fas fa-edit"></i>
+</a>
+</td>
+in web.php:
+Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
+
+in AdminController.php 
+public function editCustomer($id)
+     {
+         $customer = Customer::find($id);
+         return view('amministrazione.editCustomer')->with('customer', $customer);
+     }
+Nele file amministrazione.editCustomer
+<form action="{{ url('/aggiornaCustomer') }}" method="post">
+@csrf 
+<input type="text" value="{{ $customer->email }}" name="emailUpdate" id="email">
+<input type="hidden" name="id" value="{{ $customer->id }}">
+
+Quindi rimanda al url /aggiornaCustomer
+in web.php Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);
+in Admincontroller.php 
+devo dire che usero la SESSIONE
+
+
+public function aggiornaCustomer(Request $request)
+     {
+         $customer = Customer::find($request->input('id'));
+         $customer->email=$request->input('emailUpdate');
+         $customer->update();
+         // metto in una sessione la scritta utente aggiornato che poi visualizzo in
+         //listaUtenti.blade.php
+         Session::put('success', 'Utente aggiornato');
+         return redirect('/listaUtenti');
+     }
+    messsaggio ripreso in listaUtenti.php 
+    
+3 step delete 
+File di inzio listaUtenti.blade.php cliccado su icona delete (cestino)
+<td scope="col">
+<a href="/delete/{{ $customer->id }}">
+<i class="fas fa-trash-alt"></i>
+</a>
+</td>
+In web.php Route::any('/delete/{id}', [AdminController::class, 'delete']);
+in AdminController.php 
+public function delete($id)
+     {
+         $customer =   Customer::find($id);
+        
+         $customer->delete();
+         Session::put('success', 'Utente Cancellato');
+         return redirect('/listaUtenti');
+     }
+Ancora la sessione messaggi
+
+

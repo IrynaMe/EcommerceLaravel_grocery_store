@@ -30,10 +30,13 @@ Route::any('/login', [TemaController::class, 'login']);
 
 
 
-
+//area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);
 Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
 Route::get('/ordini', [AdminController::class, 'ordini']);
+//modifica utente
+Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
+Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);
