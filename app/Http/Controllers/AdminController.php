@@ -34,7 +34,7 @@ class AdminController extends Controller
         //$customers = Customer::all();
         //$customers = Customer::orderBy('email', 'asc')->get();
         //$customers = Customer::orderBy('email', 'asc')->paginate(2);
-        $customers = Customer::paginate(1);
+        $customers = Customer::paginate(3);
         return view('amministrazione.listaUtenti')->with('customers', $customers);
     } 
     public function ordini()
@@ -62,6 +62,21 @@ class AdminController extends Controller
          //listaUtenti.blade.php
          Session::put('success', 'Utente aggiornato');
          return redirect('/listaUtenti');
+     }
+
+     //create & save a new user
+     public function salvaUtenti(Request $request)
+     {
+         $customer = new Customer();
+         $customer->email=$request->email_utente;
+         $customer->password = md5($request->psw_utente);
+         $customer->save();
+     
+         Session::put('success', 'Utente creato');
+        
+         return redirect('/creaUtenti');
+
+         // return view('amministrazione.salvaUtenti');
      }
 }
 

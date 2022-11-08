@@ -55,6 +55,7 @@ Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
 in AdminController.php 
 public function editCustomer($id)
      {
+        //attraverso il metodo get
          $customer = Customer::find($id);
          return view('amministrazione.editCustomer')->with('customer', $customer);
      }
@@ -71,7 +72,8 @@ devo dire che usero la SESSIONE
 
 
 public function aggiornaCustomer(Request $request)
-     {
+     {  
+        //arrtaversoo il metodo post
          $customer = Customer::find($request->input('id'));
          $customer->email=$request->input('emailUpdate');
          $customer->update();

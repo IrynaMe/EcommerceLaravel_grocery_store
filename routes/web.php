@@ -40,3 +40,5 @@ Route::get('/ordini', [AdminController::class, 'ordini']);
 //modifica utente
 Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
 Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);
+//save user
+Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
