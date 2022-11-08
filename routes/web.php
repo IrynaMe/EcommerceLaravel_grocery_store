@@ -42,3 +42,6 @@ Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
 Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);
 //save user
 Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
+
+//delete user
+Route::any('/delete/{id}', [AdminController::class, 'delete']);

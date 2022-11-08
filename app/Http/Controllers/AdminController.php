@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 //nel caso si utilizzi il metodo query builder
@@ -77,6 +78,14 @@ class AdminController extends Controller
          return redirect('/creaUtenti');
 
          // return view('amministrazione.salvaUtenti');
+     }
+     public function delete($id)
+     {
+         $customer =   Customer::find($id);
+        
+         $customer->delete();
+         Session::put('success', 'Utente Cancellato');
+         return redirect('/listaUtenti');
      }
 }
 

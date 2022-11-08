@@ -7,6 +7,7 @@
         </div>
         <div class="col-md-10">
             <div class="alert alert-primary" role="alert">
+                <!-- if exists session with name success put the message and unset -->
                 @if (Session::has('success'))
 
                     {{ Session::get('success') }}
