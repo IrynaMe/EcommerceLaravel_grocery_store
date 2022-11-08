@@ -1,7 +1,7 @@
 In questo passo 
  create-update-delete users
  
- 1 step create 
+ 1 step2 create 
  File creaProdotti.blade.php, che include amministrazione/form_user
  nel form action="{{ url('/salvaUtenti') }}"
  <input type="text" class="form-control form-control-sm" id="email_utente" name="email_utente">
@@ -30,7 +30,7 @@ In questo passo
                     {{ Session::put('success', null) }}
 
                 @endif
-2 step update 
+2 step1 update 
 
 I passaggi sono:
 -clicco su pulante modifica di listaUtenti

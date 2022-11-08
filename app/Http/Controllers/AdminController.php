@@ -35,6 +35,7 @@ class AdminController extends Controller
         //$customers = Customer::all();
         //$customers = Customer::orderBy('email', 'asc')->get();
         //$customers = Customer::orderBy('email', 'asc')->paginate(2);
+        // in php e corrisponde a query select all from...
         $customers = Customer::paginate(3);
         return view('amministrazione.listaUtenti')->with('customers', $customers);
     } 

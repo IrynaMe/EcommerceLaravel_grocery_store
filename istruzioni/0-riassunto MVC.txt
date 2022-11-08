@@ -1,0 +1,36 @@
+Riassunto laravel 
+
+-il collegamento al DB in PHP si fa con la classe PDO, in laravel con env.php
+-quando ho a che fare con un DB, la tabella creo con 
+  -php artisan make:model Customer. -m
+-modifico il file migration 
+-implemento con php artisan migrare (rollback)
+
+-essendo passato dal model posso utilizzare le funzioni eloquent (query) di laravel
+
+--$customer= Customer:: all /paginate(..) (metodo get )
+Equivale a PHP a SELECT * form Customers
+
+-$customer= Customer:: find ($id)  (metodo get )
+Equivale in PHP SELECT * from Customers WHERE id=”$id”
+Dove $id = id della riga che chiamiamo $customer
+    $customer->update();
+Equivale in PHP UPDATE `customers` SET `
+
+
+--$customer= Customer:: find (resquet $request) 
+Questa equivale alla precedente, ma poiche passo un oggetto con il meotdo POST (depency injection) uso $request 
+
+   $customer = Customer::find($request->input('id'));
+        $customer->email=$request->input('emailUpdate');
+
+Dove id e emailUpdate sono selettori (name) del Input che sono nella pagina: editCustomer.blade.php
+
+    $customer = new Customer();
+        $customer->email=$request->email_utente;
+        $customer->password = md5($request->psw_utente);
+        $customer->save();
+
+$cusotmer->save 
+In PHP equivale a INSERT INTO `customers`
+
