@@ -127,6 +127,17 @@ class AdminController extends Controller
         print($fileName);
 
      }
+
+     public function listaProdotti()
+     {
+        /*  return view('amministrazione.listaUtenti');*/
+         //$customers = Customer::all();
+         //$customers = Customer::orderBy('email', 'asc')->get();
+         //$customers = Customer::orderBy('email', 'asc')->paginate(2);
+         // in php e corrisponde a query select all from...
+         $products = Product::paginate(10);
+         return view('amministrazione.listaProdotti')->with('products', $products);
+     } 
 }
 
 

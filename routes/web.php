@@ -47,3 +47,6 @@ Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
 Route::any('/delete/{id}', [AdminController::class, 'delete']);
 //create a new product
 Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
+
+//lista prodotti
+Route::get('/listaProdotti', [AdminController::class, 'listaProdotti']);
