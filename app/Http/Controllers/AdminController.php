@@ -138,6 +138,24 @@ class AdminController extends Controller
          $products = Product::paginate(10);
          return view('amministrazione.listaProdotti')->with('products', $products);
      } 
+
+     public function editProduct($id)
+     {
+         $product = Product::find($id);
+         return view('amministrazione.editProduct')->with('product', $product);
+     }
+
+
+     public function aggiornaProduct(Request $request)
+     {
+         $product = Product::find($request->input('id'));
+         $product->name=$request->input('nameUpdate');
+         $product->update();
+         // metto in una sessione la scritta utente aggiornato che poi visualizzo in
+         //listaUtenti.blade.php
+         Session::put('success', 'Prodotto aggiornato');
+         return redirect('/listaProdotti');
+     }
 }
 
 

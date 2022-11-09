@@ -20,7 +20,7 @@
             <table class="table table-responsive table-hover table-striped table-bordered ">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">Nome</th>
+                        <th scope="col"></th>
                         <th scope="col">Modifica</th>
                         <th scope="col">Cancella</th>
                     </tr>

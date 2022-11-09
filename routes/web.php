@@ -50,3 +50,7 @@ Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
 
 //lista prodotti
 Route::get('/listaProdotti', [AdminController::class, 'listaProdotti']);
+
+//modifica prodotto
+Route::any('/editProduct/{id}', [AdminController::class, 'editProduct']);
+Route::any('/aggiornaProduct', [AdminController::class, 'aggiornaProduct']);
