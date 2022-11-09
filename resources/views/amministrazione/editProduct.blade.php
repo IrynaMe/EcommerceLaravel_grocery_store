@@ -16,7 +16,7 @@
                 </p>
 
                 <p>
-                    <input type="text" value="{{ $product->name }}" name="nameUpdate" id="name">
+                    <input type="text" value="{{ $product->description }}" name="descriptionUpdate" id="description">
                     <input type="hidden" name="id" value="{{ $product->id }}">
                 </p>
 

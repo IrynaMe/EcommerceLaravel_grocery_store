@@ -150,6 +150,7 @@ class AdminController extends Controller
      {
          $product = Product::find($request->input('id'));
          $product->name=$request->input('nameUpdate');
+         $product->description=$request->input('descriptionUpdate');
          $product->update();
          // metto in una sessione la scritta utente aggiornato che poi visualizzo in
          //listaUtenti.blade.php

@@ -37,34 +37,31 @@
                             <td scope="col">{{ $product->description}}</td>
                             <td scope="col">{{ $product->price}}</td>
                             <td scope="col">{{ $product->discount}}</td>
-                            <td scope="col">{{ $product->category}}
-                                @switch($product)
-            @case('1')
-                <span >Vegetali</span>
-                @break
- 
-            @case('2')
-                <span >beveraggi</span>
-                @break
-            @case('3')
-                <span >frutta</span>
-                @break
-            @case('5')
-                <span >Aperitivi</span>
-                @break
-            @case('6')
-                <span >Dolci</span>
-                @break
-            @case('8')
-                <span >Pane</span>
-                @break
-
- 
-            @default
-                <span >non definita</span>
-        @endswitch
+                            <td scope="col">
+                                @switch($product->category)
+                                @case('1')
+                                    <span >Vegetali</span>
+                                    @break
+                                @case('2')
+                                    <span >Beveraggi</span>
+                                    @break
+                                @case('3')
+                                    <span >Frutta</span>
+                                    @break
+                                @case('5')
+                                    <span >Aperitivi</span>
+                                    @break
+                                @case('6')
+                                    <span >Dolci</span>
+                                    @break
+                                @case('8')
+                                    <span >Pane</span>
+                                    @break
+                                @default
+                                    <span >Non definita</span>
+                                @endswitch
                                 
-
+                            </td>
 
                             {{-- <td scope="col">{{ $product->image}}</td> --}}
                             <td>
