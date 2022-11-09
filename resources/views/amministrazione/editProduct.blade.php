@@ -15,6 +15,11 @@
                     <input type="hidden" name="id" value="{{ $product->id }}">
                 </p>
 
+                <p>
+                    <input type="text" value="{{ $product->name }}" name="nameUpdate" id="name">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                </p>
+
                 <input type="submit" value="Invia  modifica" class="btn btn-success">
             </form>
 

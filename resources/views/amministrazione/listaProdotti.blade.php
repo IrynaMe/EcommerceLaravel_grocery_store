@@ -20,7 +20,12 @@
             <table class="table table-responsive table-hover table-striped table-bordered ">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col"></th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrizione</th>
+                        <th scope="col">Prezzo</th>
+                        <th scope="col">Sconto</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Immagine</th>
                         <th scope="col">Modifica</th>
                         <th scope="col">Cancella</th>
                     </tr>
@@ -29,6 +34,42 @@
                     @foreach ($products as $product)
                     <tr class="text-center">
                             <td scope="col">{{ $product->name }}</td>
+                            <td scope="col">{{ $product->description}}</td>
+                            <td scope="col">{{ $product->price}}</td>
+                            <td scope="col">{{ $product->discount}}</td>
+                            <td scope="col">{{ $product->category}}
+                                @switch($product)
+            @case('1')
+                <span >Vegetali</span>
+                @break
+ 
+            @case('2')
+                <span >beveraggi</span>
+                @break
+            @case('3')
+                <span >frutta</span>
+                @break
+            @case('5')
+                <span >Aperitivi</span>
+                @break
+            @case('6')
+                <span >Dolci</span>
+                @break
+            @case('8')
+                <span >Pane</span>
+                @break
+
+ 
+            @default
+                <span >non definita</span>
+        @endswitch
+                                
+
+
+                            {{-- <td scope="col">{{ $product->image}}</td> --}}
+                            <td>
+                                <img src="tema/{{ $product->image }}" alt="{{ $product->name }}">
+                            </td>
 
                             <td scope="col">
                                 <a href="/editProduct/{{ $product->id }}">
