@@ -37,7 +37,7 @@
                             </td>
 
                             <td scope="col">
-                                <a href="/delete/{{ $product->id }}">
+                                <a href="/deleteProduct/{{ $product->id }}">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>

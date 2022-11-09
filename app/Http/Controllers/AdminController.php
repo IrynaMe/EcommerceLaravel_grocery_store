@@ -156,6 +156,15 @@ class AdminController extends Controller
          Session::put('success', 'Prodotto aggiornato');
          return redirect('/listaProdotti');
      }
+
+     public function deleteProduct($id)
+     {
+         $product =   Product::find($id);
+        
+         $product->delete();
+         Session::put('success', 'Prodotto Cancellato');
+         return redirect('/listaProdotti');
+     }
 }
 
 
