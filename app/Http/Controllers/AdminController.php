@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 
+
 use Illuminate\Http\Request;
 
 //nel caso si utilizzi il metodo query builder
 use Illuminate\Support\Facades\DB;
 //nel caso si utilizzi per le query i models 
 use App\Models\Customer;
+use App\Models\Product;
 use Session;
 
 
@@ -87,6 +89,43 @@ class AdminController extends Controller
          $customer->delete();
          Session::put('success', 'Utente Cancellato');
          return redirect('/listaUtenti');
+     }
+     public function salvaProdotto(Request $request) {
+        $fileName= $request->file('uploadfile')->getClientOriginalName();
+        //print($fileName);
+        //print($request->input('categoria'));
+
+        //se ho caricato un file con il selettore name='uploadfile'
+        if ($request->hasFile('uploadfile')) {
+            //carica il file nella cartella temporanea
+            $path=$request->file('uploadfile')->storeAs('public/img_prodotto', $fileName);
+            //print($path);
+            //path=public/img_prodotto/cipolla.png 
+            $file = $request->file('uploadfile');
+            //print($file);
+            //private/var/tmp/phpigtvGL
+            //definisco il path finale
+            $path = public_path().'/tema/images';
+            $uplaod = $file->move($path, $fileName);
+           
+        } else {
+            $fileName ='nessunaImg.jpg';
+        }
+
+        //uso il metdo Model e non DB Query
+        $product = new Product();
+        $product->name = $request->input('nome');
+        $product->description = $request->input('editor1');
+        $product->price= $request->input('prezzo');
+        $product->discount= $request->input('sconto');
+        $product->category = $request->input('categoria');
+        $product->image= 'images/'.$fileName;
+        $product ->save();
+        //sessione per messaggio Prodotto Salvato
+        Session::put('success', 'Prodotto Salvato');
+        return back();
+        print($fileName);
+
      }
 }
 

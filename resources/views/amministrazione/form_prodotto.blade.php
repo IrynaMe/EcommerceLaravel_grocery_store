@@ -1,5 +1,6 @@
 <h3 style="text-align:center">Inserisci nuovo Prodotto</h3>
-<form action="#" method="post" enctype="multipart/form-data">
+{{-- per gestire immagini mettiamo type enctype="multipart/form-data" --}}
+<form action="{{ url('/salvaProdotto') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="row">

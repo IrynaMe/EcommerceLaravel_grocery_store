@@ -45,3 +45,5 @@ Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
 
 //delete user
 Route::any('/delete/{id}', [AdminController::class, 'delete']);
+//create a new product
+Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);

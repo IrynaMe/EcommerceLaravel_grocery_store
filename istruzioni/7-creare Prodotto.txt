@@ -1,0 +1,112 @@
+in questo step andra creato un form che crea un nuovo prodotto
+
+1step
+Creare una tabella products 
+php artisan make:model Product -m
+
+nel file cosi' creato per la creazione della tabella
+  public function up()
+    {
+        Schema::create('utenti', function (Blueprint $table) {
+            $table->id();
+            $table->string('email');
+            $table->string('password');
+            $table->string('nome');
+            $table->string('cognome');
+            $table->string('indirizzo');
+            $table->string('citta');
+            $table->string('nazione');
+            
+            $table->timestamps();
+        });
+    }
+    php artisan migrate
+    
+    INVECE NOI FACCIAMO IMPORT della tabella in phpMyAdmin
+    poi nella tabella importo i dati copiando la parte value dal file products.sql 
+    (esportazione del DB ecommerce1)
+    
+    2 step 
+    form_prodotto.blade.php 
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
+@endif
+@if (Session::has('success'))
+    <div class="alert alert-primary" role="alert">
+        {{ Session::get('success') }}
+        {{ Session::put('success', null) }}
+    </div>
+@endif
+Questo serve per visualizzare 
+-errori nel caso di non compilazione dei form 
+-messaggio di inserimento del prodotto nel DB 
+il form va scritto 
+<form action="{{ url('/salvaProdotto') }}" method="post" enctype="multipart/form-data">
+3 step 
+web.php 
+Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
+
+4 step 
+AdminController.php 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+//nel caso si utilizzi il metodo query builder
+use Illuminate\Support\Facades\DB;
+//nle caso si utilizzi per le query i models
+//specifico i models che uso
+use App\Models\Customer;
+use App\Models\Product;
+//uso la sessione per i messaggi
+use Session;
+
+-----------------
+public function salvaProdotto(Request $request)
+     {
+         //questa parte serve a validare il form del Prodotto
+         $validate= $request->validate(['nome'=>'required',
+                                      'editor1'=>'required',
+                                      'prezzo'=>'required',
+                                      'categoria'=>'required',
+                                      'uploadfile'=>'image|nullable|max:19999']);
+
+         //istruzione per catturare il nome esatto della immagine
+         $fileName= $request->file('uploadfile')->getClientOriginalName();
+         //istruzione per catturare estensione della immagine
+        //$fileName= $request->file('uploadfile')->getClientOriginalExtension();
+         //test di filename
+         // print($fileName);  //test per vedere cosa mostra il filename
+         // test di funzionamento. cioe' che catturo id di categoria
+         //  print($request->input('categoria'));
+
+         //se abbiamo caricato un immagine
+         if ($request->hasFile('uploadfile')) {
+             //  $fileName= $request->file('uploadfile')->getClientOriginalExtension();
+             $path=$request->file('uploadfile')->storeAs('public/img_prodotto', $fileName);
+             $file = $request->file('uploadfile');
+             $path = public_path().'/tema/images';
+             $uplaod = $file->move($path, $fileName);
+         } else {
+             $fileName ='nessunaImg.jpg';
+         }
+         //uso il metdo Model e non DB Query
+         $product = new Product();
+         $product->name = $request->input('nome');
+         $product->description = $request->input('editor1');
+         $product->price= $request->input('prezzo');
+         $product->discount= $request->input('sconto');
+         $product->category = $request->input('categoria');
+         $product->image= 'images/'.$fileName;
+         $product ->save();
+         //sessione per messaggio Prodotto Salvato
+         Session::put('success', 'Prodotto Salvato');
+         return back();
+         print($fileName);
+     }
