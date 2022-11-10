@@ -10,7 +10,7 @@
             <hr>
             <form action="{{ url('/aggiornaProduct') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="container">
+        <div class="container">
                     <div class="row">
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Nome del Prodotto</label>
@@ -80,7 +80,7 @@
                         <option value="8">Pane</option>
                     </select>
                 </div>
-            </div>
+            
 
              <div class="row">
                 <div class="mb-3">
@@ -97,7 +97,7 @@
                 </div>
             </div> 
 
-
+        </div>
                 <input type="submit" value="Invia  modifica" class="btn btn-success">
             </div>
             </form>
