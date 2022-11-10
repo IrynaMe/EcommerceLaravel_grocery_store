@@ -115,6 +115,6 @@ shop.blade.php
 da notare i prodotti che sono ripetuti per ogni riga del DB, attraverso l'istruzione 
 @foreach
 @endforeach
-E dove ho inserito delle istruzioni del tipo {{ $product->name }} che mostra il valore nel <meta name="distribution" content="Global">
+E dove ho inserito delle istruzioni del tipo {{ $product->name }} che mostra il valore nel del campo nome
 
 {!! $products->links() !!} Per mostrare i links di pagination

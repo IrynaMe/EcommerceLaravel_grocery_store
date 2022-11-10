@@ -38,8 +38,8 @@ class TemaController extends Controller
 
     public function shop()
     {
-        $products= Product::All();
-        $products= Product::paginate(6);
+       // $products= Product::All();
+        $products= Product::paginate(8);
         return view('front.shop')->with('products', $products);
     }
     

@@ -1,53 +1,101 @@
 @extends('front.layout')
 @section('content')
-    <div class="container">
-        <h2>Prodotti FoodEcommerce</h2>
+    <div class="top-brands">
+        <div class="container">
+            <div class="agile_top_brands_grids">
+                @foreach ($products as $product)
+                    {{-- test oer vedere che vengono visualizzati tutti i nome --}}
+                    {{-- <h1> {{ $product->name }}</h1> --}}
+                    {{-- copiato da home.blade.php --}}
+                    <div class="col-md-3 top_brand_left" style="min-height:500px; width:280px">
+                        <div class="hover14 column">
+                            <div class="agile_top_brand_left_grid" style="height:440px">
+                                <div class="tag"><img src="tema/Images/tag.png" alt=" " class="img-responsive" />
+                                </div>
+                                <div class="agile_top_brand_left_grid1" style="height:419px">
+                                    <figure>
+                                        <div class="snipcart-item block">
+                                            <div class="snipcart-thumb">
+                                                <a href="single/{{ $product->id }}">
+
+                                                    <h4> {{ $product->name }}</h4>
 
 
-        <div class="agile_top_brands_grids">
-            @foreach ($products as $product)
-                {{-- qui mettero un prodoto che va ripetuto all'interno di un foreach --}}
-                <div class="col-md-3 top_brand_left">
-                    <div class="hover14 column">
-                        <div class="agile_top_brand_left_grid">
-                            <div class="tag"><img src="tema/Images/tag.png" alt=" " class="img-responsive" /></div>
-                            <div class="agile_top_brand_left_grid1">
-                                <figure>
-                                    <div class="snipcart-item block">
-                                        <div class="snipcart-thumb">
-                                            <a href="single.html"><img title=" " alt=" "
-                                                    src="tema/Images/1.png" /></a>
-                                            <p>fortune sunflower oil</p>
-                                            <h4>$7.99 <span>$10.00</span></h4>
+
+
+
+
+                                                    <img title=" " alt=" " src="tema/{{ $product->image }}" />
+                                                </a>
+                                                <div class="snipcart-item block">
+                                                    <div class="snipcart-thumb">
+                                                        @if ($product->discount > 0)
+                                                            <p><del style="font-size:12px;color:gray;">
+                                                                    {{ $product->price }} €
+                                                                    <p style="margin-top:-15px">
+                                                                        <b>
+                                                                            scontato a:
+                                                                            {{ $product->discount }} €;
+
+                                                                        </b>
+                                                                    </p>
+
+                                                                @else
+                                                                    <br>
+                                                                    prezzo:
+                                                                    {{ $product->price }}. €
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                </p>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div
+                                                class="snipcart-details 
+                                            top_brand_home_details">
+                                                <form action="{{ url('/addcart/' . $product->id) }}" method="post">
+                                                    @csrf
+                                                    <fieldset>
+                                                        <input type="hidden" name="cmd" value="_cart" />
+                                                        <input type="hidden" name="add" value="1" />
+                                                        <input type="hidden" name="business" value=" " />
+                                                        <input type="hidden" name="item_name"
+                                                            value="{{ $product->name }}" />
+                                                        <input type="hidden" name="amount"
+                                                            value="{{ $product->price }}" />
+                                                        <input type="hidden" name="discount_amount"
+                                                            value="{{ $product->discount }}" />
+                                                        <input type="submit" name="submit" value="add"
+                                                            class="button" />
+                                                        <input type="hidden" name="product_id"
+                                                            value="{{ $product->id }}">
+                                                    </fieldset>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="snipcart-details top_brand_home_details">
-                                            <form action="checkout.html" method="post">
-                                                <fieldset>
-                                                    <input type="hidden" name="cmd" value="_cart" />
-                                                    <input type="hidden" name="add" value="1" />
-                                                    <input type="hidden" name="business" value=" " />
-                                                    <input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-                                                    <input type="hidden" name="amount" value="7.99" />
-                                                    <input type="hidden" name="discount_amount" value="1.00" />
-                                                    <input type="hidden" name="currency_code" value="USD" />
-                                                    <input type="hidden" name="return" value=" " />
-                                                    <input type="hidden" name="cancel_return" value=" " />
-                                                    <input type="submit" name="submit" value="Add to cart"
-                                                        class="button" />
-                                                </fieldset>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </figure>
+                                    </figure>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
 
-            <div class="clearfix"> </div>
+                @endforeach
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            {{-- //per mostrae i links --}}
+            {!! $products->links() !!}
+
         </div>
     </div>
 @endsection
