@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 08, 2022 at 11:21 AM
+-- Generation Time: Nov 04, 2022 at 09:39 AM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -31,9 +31,9 @@ CREATE TABLE `customers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Nome',
-  `cognome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Cognome',
-  `indirizzo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Indirizzo',
+  `nome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cognome` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `indirizzo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `citta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Roma',
   `nazione` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Italia',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -45,12 +45,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `email`, `password`, `nome`, `cognome`, `indirizzo`, `citta`, `nazione`, `created_at`, `updated_at`) VALUES
-(1, 'admin@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Iryna', 'Melnikava', 'piazza Duomo', 'Roma', 'italia', '2022-11-04 08:21:48', '2022-11-04 08:21:48'),
+(1, 'admin@test.it', 'Admin123', 'Iryna', 'Melnikava', 'piazza Duomo', 'Roma', 'italia', '2022-11-04 08:21:48', '2022-11-04 08:21:48'),
 (2, 'admin2@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Nice', 'Surname', 'via Limone', 'Roma', 'Italia', NULL, NULL),
-(3, 'admin3@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Admin3', 'Admin3', 'Via Papaya', 'Roma', 'Italia', NULL, '2022-11-08 07:05:50'),
-(5, 'admin4@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Nome', 'Cognome', 'Indirizzo', 'Roma', 'Italia', '2022-11-08 08:42:29', '2022-11-08 08:42:29'),
-(6, 'Admin5@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Nome', 'Cognome', 'Indirizzo', 'Roma', 'Italia', '2022-11-08 08:42:52', '2022-11-08 08:42:52'),
-(7, 'admin6@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Nome', 'Cognome', 'Indirizzo', 'Roma', 'Italia', '2022-11-08 08:43:36', '2022-11-08 08:43:36');
+(3, 'admin3@test.it', 'e64b78fc3bc91bcbc7dc232ba8ec59e0', 'Admin3', 'Admin3', 'Via Papaya', 'Roma', 'Italia', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -70,7 +67,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

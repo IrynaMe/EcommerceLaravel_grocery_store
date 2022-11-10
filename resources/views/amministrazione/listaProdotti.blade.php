@@ -65,7 +65,7 @@
 
                             {{-- <td scope="col">{{ $product->image}}</td> --}}
                             <td>
-                                <img src="tema/{{ $product->image }}" alt="{{ $product->name }}">
+                                <img style="height: 100px;" src="tema/{{ $product->image }}" alt="{{ $product->name }}">
                             </td>
 
                             <td scope="col">

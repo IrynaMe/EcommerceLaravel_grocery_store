@@ -158,10 +158,7 @@ class AdminController extends Controller
          $product->discount=$request->input('discountUpdate');
          $product->category=$request->input('categoryUpdate');
          
-         
-
         
-
 
           if ($request->hasFile('imageUpdate')) {
             $product->image=$request->file('imageUpdate');
@@ -178,10 +175,7 @@ class AdminController extends Controller
              $path = public_path().'/tema/images';
              $uplaod = $file->move($path, $fileName);
              $product->image= 'images/'.$fileName;
-         } else {
-             $fileName ='nessunaImg.jpg';
-             //$fileName =$request->file('imageDefault');
-         }
+         } 
  
         
          $product->update();
