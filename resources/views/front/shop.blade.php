@@ -7,7 +7,7 @@
                     {{-- test oer vedere che vengono visualizzati tutti i nome --}}
                     {{-- <h1> {{ $product->name }}</h1> --}}
                     {{-- copiato da home.blade.php --}}
-                    <div class="col-md-3 top_brand_left" style="min-height:500px; width:280px">
+                    <div class="col-md-3 top_brand_left" style="min-height:500px; width:280px; box-sizing:border-box;">
                         <div class="hover14 column">
                             <div class="agile_top_brand_left_grid" style="height:440px">
                                 <div class="tag"><img src="tema/Images/tag.png" alt=" " class="img-responsive" />
@@ -18,21 +18,23 @@
                                             <div class="snipcart-thumb">
                                                 <a href="single/{{ $product->id }}">
 
-                                                    <h4> {{ $product->name }}</h4>
-
-                                                    <img title="{{ $product->name }}" alt="{{ $product->name }}" src="tema/{{ $product->image }}" />
+                                                    <h4 style="margin-top: 20px; margin-bottom:25px;"> {{ $product->name }}</h4>
+                                                    <div style="height:140px; width:auto; box-sizing:border-box;">
+                                                        <img  style="max-height:140px;" title="{{ $product->name }}" alt="{{ $product->name }}" src="tema/{{ $product->image }}" />
+                                                    </div>
+                                                    
                                                 </a>
-                                                <div class="snipcart-item block">
+                                                <div  class="snipcart-item block">
                                                     <div class="snipcart-thumb">
                                                         @if ($product->discount > 0)
-                                                            <p><del style="font-size:12px;color:gray;">
+                                                            <p> <del style="font-size:12px; color:gray;">
                                                                     {{ $product->price }} €
                                                                     <p style="margin-top:-15px">
-                                                                        <b>scontato a:{{ $product->discount }} €;</b>
+                                                                        <b>scontato a: {{ $product->discount }} €;</b>
                                                                     </p>
                                                                 @else
                                                                     <br>
-                                                                    <b> prezzo:{{ $product->price }}. €</b> 
+                                                                    <p> <b> prezzo: {{ $product->price }}. €; </b> </p> 
                                                         @endif
                                                     </div>
                                                 </div>
