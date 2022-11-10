@@ -157,13 +157,15 @@ class AdminController extends Controller
          $product->price=$request->input('priceUpdate');
          $product->discount=$request->input('discountUpdate');
          $product->category=$request->input('categoryUpdate');
-         //$product->image=$request->file('imageUpdate');
-         //$fileName =$request->file('imageUpdate');
+         
+         
 
         
 
 
-         /* if ($request->hasFile('imageUpdate')) {
+          if ($request->hasFile('imageUpdate')) {
+            $product->image=$request->file('imageUpdate');
+            $fileName =$request->file('imageUpdate');
             $fileName= $request->file('imageUpdate')->getClientOriginalName();
              //carica il file nella cartella temporanea
              $path=$request->file('imageUpdate')->storeAs('public/img_prodotto', $fileName);
@@ -180,7 +182,7 @@ class AdminController extends Controller
              $fileName ='nessunaImg.jpg';
              //$fileName =$request->file('imageDefault');
          }
- */
+ 
         
          $product->update();
          // metto in una sessione la scritta utente aggiornato che poi visualizzo in

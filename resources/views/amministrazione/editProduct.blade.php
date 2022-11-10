@@ -82,11 +82,11 @@
                 </div>
             </div>
 
-{{--             <div class="row">
+             <div class="row">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Immagine</label>
                     
-                    <img src="tema/{{ $product->image }}" alt="{{ $product->name }}">
+                    <img src="tema/{{ $product->image }}" alt="{{ $product->name }}" name="imageDefault" id="imageDefault">
                     <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="text" value="{{ $product->image }}" name="imageUpdate" id="imageUpdate"
                          type="file" class="form-control form-control-sm"
@@ -95,7 +95,7 @@
                     
 
                 </div>
-            </div> --}}
+            </div> 
 
 
                 <input type="submit" value="Invia  modifica" class="btn btn-success">
