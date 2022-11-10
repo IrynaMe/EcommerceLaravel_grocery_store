@@ -1,3 +1,23 @@
+shop,blade.php, deve contenere tutti i prodotti, mostrati 6 per ogni pagina
+
+step1 : TemaController.php
+//nle caso si utilizzi per le query i models
+//specifico i models che uso
+use App\Models\Customer;
+use App\Models\Product;
+
+Poi nella funzione 
+  public function shop()
+    {
+        $products= Product::All();
+        $products= Product::paginate(6);
+        return view('front.shop')->with('products', $products);
+    }
+    
+Cosi ottengo tutti i prodotti, impaginatoi 6 per pcntl_async_signals
+
+2 step 
+shop.blade.php
 @extends('front.layout')
 @section('content')
     <div class="top-brands">
@@ -16,11 +36,15 @@
                                     <figure>
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb">
-                                                <a href="single/{{ $product->id }}">
-
+                                                <a href=" ">
                                                     <h4> {{ $product->name }}</h4>
 
-                                                    <img title="{{ $product->name }}" alt="{{ $product->name }}" src="tema/{{ $product->image }}" />
+
+
+
+
+
+                                                    <img title=" " alt=" " src="tema/{{ $product->image }}" />
                                                 </a>
                                                 <div class="snipcart-item block">
                                                     <div class="snipcart-thumb">
@@ -28,11 +52,17 @@
                                                             <p><del style="font-size:12px;color:gray;">
                                                                     {{ $product->price }} €
                                                                     <p style="margin-top:-15px">
-                                                                        <b>scontato a:{{ $product->discount }} €;</b>
+                                                                        <b>
+                                                                            scontato a:
+                                                                            {{ $product->discount }} €;
+
+                                                                        </b>
                                                                     </p>
+
                                                                 @else
                                                                     <br>
-                                                                    <b> prezzo:{{ $product->price }}. €</b> 
+                                                                    prezzo:
+                                                                    {{ $product->price }}. €
                                                         @endif
                                                     </div>
                                                 </div>
@@ -47,8 +77,7 @@
                                             <div
                                                 class="snipcart-details 
                                             top_brand_home_details">
-                                                <form action="{{ url('/addcart/' . $product->id) }}" method="post">
-                                                    @csrf
+                                                <form action="index.php" method="post">
                                                     <fieldset>
                                                         <input type="hidden" name="cmd" value="_cart" />
                                                         <input type="hidden" name="add" value="1" />
@@ -61,8 +90,7 @@
                                                             value="{{ $product->discount }}" />
                                                         <input type="submit" name="submit" value="add"
                                                             class="button" />
-                                                        <input type="hidden" name="product_id"
-                                                            value="{{ $product->id }}">
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                     </fieldset>
                                                 </form>
                                             </div>
@@ -75,16 +103,18 @@
 
                 @endforeach
             </div>
-
-
-        </div>
-
-    </div>
-    <div class="container">
-        <div class="d-flex justify-content-center">
-            {{-- //per mostrae i links --}}
+            
+            <div class="d-flex justify-content-center">
             {!! $products->links() !!}
 
+            </div>
         </div>
     </div>
 @endsection
+
+da notare i prodotti che sono ripetuti per ogni riga del DB, attraverso l'istruzione 
+@foreach
+@endforeach
+E dove ho inserito delle istruzioni del tipo {{ $product->name }} che mostra il valore nel del campo nome
+
+{!! $products->links() !!} Per mostrare i links di pagination
