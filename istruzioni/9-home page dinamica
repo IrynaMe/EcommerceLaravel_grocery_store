@@ -1,0 +1,75 @@
+IN questo  passo volgliamo mostrare la home page dinamica.
+Cioè come risultato della interrigazione del DB, mostrando
+-prodotti in sconto
+-prodotti nuovi
+1 step Controller
+in TemaController.php, la function home viene cosi' modficata
+public function home()
+    {
+        $products= Product::All()->where('discount', '>', 0);
+        $Newproducts =Product::All();
+     
+    
+        return view('front.home')->with('products', $products)->with('Newproducts', $Newproducts);
+    }
+ Cioè oltre alla vista ritorniamo 2 query
+ -La prima che restituisce i prodotti con la colonna discount > 0
+ -la seconda restituisce tutti i prodotti senza alcuna condizione
+ Questo poi verra utilizzato nella home page
+
+2 stp home.blade.php 
+Prodotti con sconto
+La prima parte della home page, che utilizza la prima query
+$products= Product::All()->where('discount', '>', 0);
+@foreach ($products as $product)
+//template html 
+//dove glio fa appartire il valore della colonna 
+//ad esempio name {{ $product->name }}
+@endforeach
+
+3 step prodotti nuovi 
+Utilizziamo la query:         $Newproducts =Product::All();
+Poi andaimo a vedere se i prodotti sono stati inseriti da 20 gg (colonna date)
+
+ 20gg in secondi corrisponde a $novita = 30 * 24 * 60 * 60;
+ Oggi    $oggi = time(); (numero timestamp.tempo unix secondi da 1/1/1970)
+
+La data indicata nella colonna date è in formato data 
+e dobbiamo riportarla in numero per effettuare la differenza
+$creato = $Newproduct->date;
+$creato = strtotime($creato);
+
+La prima istruzione cattura il dato, la seconda lo trasform in number
+Quindi home.blade.php
+                    @php
+                        $oggi = time();
+                        $novita = 30 * 24 * 60 * 60;
+
+                    @endphp
+                    @foreach ($Newproducts as $Newproduct)
+
+                        @php
+                            $creato = $Newproduct->date;
+                            $creato = strtotime($creato);                           
+                            $nuovo = $oggi - $creato - $novita;                          
+                        @endphp
+                        @if ($nuovo < 0)
+                            //template html 
+                            //dove glio fa appartire il valore della colonna 
+                            //ad esempio name {{$Newproduct->name }}
+                        @endif
+                    @endforeach
+                    
+in front/layou.blade.php 
+<form action="/cart" method="post" class="last">
+            @csrf
+            <fieldset>
+                <input type="hidden" name="cmd" value="_cart" />
+                <input type="hidden" name="display" value="1" />
+                <input type="submit" name="submit" value="View your cart" class="button" />
+            </fieldset>
+            
+Aggiungiamo questo link nei ADD TO CART pulsanti che motrano il prodotto 
+home.blade.php 
+
+<form action="url{{ '/cart/'.$Newproduct->id }}" method="post">

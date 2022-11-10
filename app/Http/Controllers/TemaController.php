@@ -12,7 +12,9 @@ class TemaController extends Controller
 {
     public function home()
     {
-        return view('front.home');
+        $products= Product::All()->where('discount', '>', 0);
+        $Newproducts =Product::All();
+        return view('front.home')->with('products', $products)->with('Newproducts', $Newproducts);
     }
     public function mail()
     {
