@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Product;
 
 
 
@@ -29,10 +31,18 @@ class TemaController extends Controller
     {
         return view('front.pagamenti');
     }
-    public function shop()
+/*     public function shop()
     {
         return view('front.shop');
+    } */
+
+    public function shop()
+    {
+        $products= Product::All();
+        $products= Product::paginate(6);
+        return view('front.shop')->with('products', $products);
     }
+    
 
     public function login()
     {
