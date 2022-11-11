@@ -99,7 +99,7 @@ class AdminController extends Controller
 
     public function delete($id)
     {
-        $customer =   Customer::find($id);
+        $customer = Customer::find($id);
 
         $customer->delete();
         Session::put('success', 'Utente Cancellato');

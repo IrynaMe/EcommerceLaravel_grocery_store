@@ -1,0 +1,40 @@
+SQL per PHP                                     LARAVEL (usiamo functions in controllers-metodi ELOQUENT)
+(usiamo metodi prepare, execute)
+
+1 SELECT * FROM `products`                      1 $product=Product::all
+                                                        oppure
+                                                $product=Product::paginate(n)
+
+
+2 SELECT * FROM `products` WHERE `id`='$id'     2 $product=Product::find($id)
+                                                        oppure
+                                                $product=Product::All()->where('discount', '>', 0);
+                                                $product=Product::All()->where('id', '=', $id);
+
+
+3 UPDATE `customers` SET `email`='[value-2]',
+`password`='[value-3]' WHERE `id`= '$id'        3 preparazione: raccolgo i dati con metodo GET
+                                                $customer = Customer::find($id);
+                                                return view('amministrazione.editCustomer')->with('customer', $customer);
+                                                
+                                                !update con metodo POST (Request, $request)
+                                                $customer = Customer::find($request->input('id'));
+                                                $customer->email=$request->input('emailUpdate');
+                                                $customer->update();
+
+4 INSERT INTO `customers`(`id`, `email`, 
+`password`) VALUES ('[value-1]',
+'[value-2]','[value-3]')                        4 preparazione:
+                                                 con metodo POST (Request $request)
+                                                 $customer = new Customer();
+                                                 $customer->email=$request->email_utente;
+                                                 $customer->password = md5($request->psw_utente);
+                                                 $customer->save();
+
+
+5 DELETE FROM `customers` WHERE `id`= '$id'     5 $customer = Customer::find($id);
+                                                $customer->delete();
+
+
+
+

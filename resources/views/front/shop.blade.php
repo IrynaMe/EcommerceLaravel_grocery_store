@@ -18,20 +18,17 @@
                                             <div class="snipcart-thumb">
                                                 <a href="single/{{ $product->id }}">
 
-                                                    <h4> {{ $product->name }}</h4>
-
-
-
-
-
-
-                                                    <img title=" " alt=" " src="tema/{{ $product->image }}" />
+                                                    <h4 style="margin:20px 0 25px 0;"> {{ $product->name }}</h4>
+                                                    <div style="height:150px;">
+                                                        <img title=" {{ $product->image }}" alt=" {{ $product->image }}"
+                                                            src="tema/{{ $product->image }}" style="max-height:150px;" />
+                                                    </div>
                                                 </a>
                                                 <div class="snipcart-item block">
                                                     <div class="snipcart-thumb">
                                                         @if ($product->discount > 0)
                                                             <p><del style="font-size:12px;color:gray;">
-                                                                    {{ $product->price }} €
+                                                                    {{ $product->price }} €;
                                                                     <p style="margin-top:-15px">
                                                                         <b>
                                                                             scontato a:
@@ -39,16 +36,16 @@
 
                                                                         </b>
                                                                     </p>
-
-                                                                @else
-                                                                    <br>
-                                                                    prezzo:
-                                                                    {{ $product->price }}. €
+                                                            </p>
+                                                        @else
+                                                            <br>
+                                                            <b> prezzo:
+                                                                {{ $product->price }}. €;</b>
                                                         @endif
                                                     </div>
                                                 </div>
 
-                                                </p>
+
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -83,7 +80,6 @@
                             </div>
                         </div>
                     </div>
-
                 @endforeach
             </div>
 

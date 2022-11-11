@@ -31,7 +31,7 @@ $products= Product::All()->where('discount', '>', 0);
 Utilizziamo la query:         $Newproducts =Product::All();
 Poi andaimo a vedere se i prodotti sono stati inseriti da 20 gg (colonna date)
 
- 20gg in secondi corrisponde a $novita = 30 * 24 * 60 * 60;
+ 30gg in secondi corrisponde a $novita = 30 * 24 * 60 * 60;
  Oggi    $oggi = time(); (numero timestamp.tempo unix secondi da 1/1/1970)
 
 La data indicata nella colonna date è in formato data 
@@ -60,7 +60,7 @@ Quindi home.blade.php
                         @endif
                     @endforeach
                     
-in front/layou.blade.php 
+in front/layout.blade.php 
 <form action="/cart" method="post" class="last">
             @csrf
             <fieldset>
