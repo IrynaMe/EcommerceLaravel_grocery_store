@@ -36,5 +36,29 @@ SQL per PHP                                     LARAVEL (usiamo functions in con
                                                 $customer->delete();
 
 
+6 in Laravel quando voglio ottenere un elenco uso il punto SELECT,
+quando voglio un solo record uso quandto descritto nel punto SELECT WHERE (ritornando questa info alla lista con istruzione WITH)
+ return view('amministrazione.editCustomer')->with('customer', $customer);
+ in laravel quando passo i dati con un form 
+ la funzione del controller che vuole utilizzare questi dati 
+ usa (request $request) cioe passo e catturo dei dati con il metodo POST
+ Quando passo i dati con GET, passo ($id) nella funzione
+
+ ---public function aggiornaProduct(Request $request)
+    {
+        $product = Product::find($request->input('id'));
+        $product->name=$request->input('nomeUpdate');
+        $product->description=$request->input('descUpdate');
+      !!!  significa che i dati sono passati con un form
+
+        ----public function editProduct($id)
+    {
+
+        $product = Product::find($id);
+        return view('amministrazione.editProduct')->with('product', $product);
+    }
+   !!!  significa che i dati sono passati con un metodo GET
+
+
 
 

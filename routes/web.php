@@ -28,7 +28,8 @@ Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
 Route::any('/login', [TemaController::class, 'login']);
 
-
+//routing cart
+Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);
@@ -57,3 +58,5 @@ Route::any('/aggiornaProduct', [AdminController::class, 'aggiornaProduct']);
 
 //delete product
 Route::any('/deleteProduct/{id}', [AdminController::class, 'deleteProduct']);
+
+

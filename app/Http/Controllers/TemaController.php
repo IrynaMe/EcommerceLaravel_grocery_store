@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Product;
+use Session;
+use App\Cart;
 
 
 
@@ -24,11 +26,20 @@ class TemaController extends Controller
     {
         return view('front.about');
     }
+
     public function cart()
     {
-        return view('front.cart');
-        
+        if (!Session::has('cart')) {
+            return view('front.cart');
+        }
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+
+        return view('front.cart', ['products' => $cart->items]);
+        // return view('front.cart');
     }
+
     public function pagamenti()
     {
         return view('front.pagamenti');
@@ -51,5 +62,17 @@ class TemaController extends Controller
         return view('front.login');
     }
 
+    public function addCart($id)
+    {
+        $product = Product::find($id);
+        
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        //dd(Session::get('cart'));
+        return back();
+    }
     
 }

@@ -1,0 +1,114 @@
+In Laravel esistono dei cart packages . Qui un esempio
+//https://larainfo.com/blogs/laravel-8-add-to-cart-step-by-step-example
+
+pero' qsti packages possono avere dei problemi in caso di aggiornamento della versione Laravel
+Per questo seguiremo una via tradizionale 
+File coinvolti:
+-tutti i file con i prodotti, che contengono il pulsante ADD (aggiungi al carrello):
+       -home.blade.php 
+       -Shop.blade.php 
+       -singolo.blade.php 
+-web.php, 
+-TemaController.php,
+-app/cart.php 
+
+
+1 step (mettiamo cart.php in app/)
+Noi abbiamo gia' cretao una pagina cart, che vogliamo raggiungere nelle pagine 
+in cui è mostrato il prodotto in home.blade.php 
+           <form action="{{ url('/addcart/' . $product->id) }}" method="post">
+    <form action="{{ url('/addcart/' . $Newproduct->id) }}" method="post">
+    
+    singolo.blade.php, shop.blade.php
+           <form action="{{ url('/addcart/' . $product->id) }}" method="post">
+     Non dimenticando a tutti i form di aggiungere   @csrf      
+     Ecco il codice completo 
+     
+     <div class="col-md-8 address_form_agile">
+2 step 
+In web.php 
+Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
+
+in TemaController
+Aggiungere 
+use Session;
+use App\Cart;
+
+Poi 
+public function addCart($id)
+    {
+        $product = Product::find($id);
+        
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        // dd(Session::get('cart'));
+        return back();
+    }
+Qui viene invocata la funzione add di app/Cart.php a cui vengono passati id del prodotto 
+e le altre informazioni($product)
+Queste informazioni nella funzione add, vengono messe in un array $cart 
+e poi con    Session::put('cart', $cart); immagazzinate in una sessione 
+Come risultato tutti i prodotti su cui ho cliccato sul pulsante add 
+sono immagazzinanti in una sessione 
+
+3 step 
+Contare i prodotti nel carrello
+In front/ layout.blade.php 
+{{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}
+cioè se la sessione esiste (ho un prodotto su cui ho cliccato add) allora di questa sessione visulaizza il parametro totalQty 
+creato in Cart.php nella funzione add.
+
+4 step 
+Visualizzare i prodotti nel carrello
+cliccando in layout.blade.php 
+<form action="/cart" method="get" class="last">
+                @csrf
+                <fieldset>
+                    <input type="hidden" name="cmd" value="_cart" />
+                    <input type="hidden" name="display" value="1" />
+                    <input type="submit" name="submit" value="Vai alla carta" class="button" />
+                    <span style="padding:5px 10px;background-color:orange; color:white; 
+                        border-radius:50%">
+                        {{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span>
+                </fieldset>
+            </form>
+
+Con questa istruzione aggiorna la quantita e si vede a fianco del bottone  "vai alla carta"
+            
+In web.php 
+Route::any('/cart', [TemaController::class, 'cart']);
+in TemaController.php 
+public function cart()
+    {
+        if (!Session::has('cart')) {
+            return view('front.cart');
+        }
+
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+
+        return view('front.cart', ['products' => $cart->items]);
+        // return view('front.cart');
+    }
+in cart.blade.php 
+
+-!in @section('content'):
+
+    @if (Session::has('status'))
+        <div class="alert alert-secondary">
+            <h3> {{ Session::get('status') }}</h3>
+
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
+
+@if (Session::has('cart'))
+@foreach ($products as $product)
+// qui in un template html le varie info del prodotto esempio:
+<img src="/tema/{{ $product['product_image'] }}"
+alt=" " class="img-responsive">
+@endforeach
+
