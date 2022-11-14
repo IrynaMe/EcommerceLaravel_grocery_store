@@ -16,7 +16,8 @@
                                     <figure>
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb">
-                                                <a href="single/{{ $product->id }}">
+                                                {{-- <a href="single/{{ $product->id }}"> --}}
+                                                <a href="/{{ $product->id }}">
 
                                                     <h4 style="margin:20px 0 25px 0;"> {{ $product->name }}</h4>
                                                     <div style="height:150px;">

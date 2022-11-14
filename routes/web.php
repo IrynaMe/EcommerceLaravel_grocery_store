@@ -28,6 +28,9 @@ Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
 Route::any('/login', [TemaController::class, 'login']);
 
+//single dproduct
+Route::any('/single/{id}', [TemaController::class, 'singolo']);
+
 //routing cart
 Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 

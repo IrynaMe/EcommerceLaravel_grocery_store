@@ -19,13 +19,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
-    <link href="tema/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="tema/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../tema/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../tema/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome icons -->
-    <link href="tema/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../tema/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //font-awesome icons -->
     <!-- js -->
-    <script src="tema/js/jquery-1.11.1.min.js"></script>
+    <script src="../tema/js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
         rel='stylesheet' type='text/css'>
@@ -261,22 +261,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script>
         /* paypal.minicart.render();
 
-                            		paypal.minicart.cart.on('checkout', function (evt) {
-                            			var items = this.items(),
-                            				len = items.length,
-                            				total = 0,
-                            				i;
+                                		paypal.minicart.cart.on('checkout', function (evt) {
+                                			var items = this.items(),
+                                				len = items.length,
+                                				total = 0,
+                                				i;
 
-                            			// Count the number of each item in the cart
-                            			for (i = 0; i < len; i++) {
-                            				total += items[i].get('quantity');
-                            			}
+                                			// Count the number of each item in the cart
+                                			for (i = 0; i < len; i++) {
+                                				total += items[i].get('quantity');
+                                			}
 
-                            			if (total < 3) {
-                            				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-                            				evt.preventDefault();
-                            			}
-                            		}); */
+                                			if (total < 3) {
+                                				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                                				evt.preventDefault();
+                                			}
+                                		}); */
     </script>
 </body>
 

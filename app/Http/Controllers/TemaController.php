@@ -74,5 +74,13 @@ class TemaController extends Controller
         //dd(Session::get('cart'));
         return back();
     }
+
+    //single product
+    public function singolo($id)
+    {
+    $product = Product::find($id);
+
+    return view('front.singolo')->with('product', $product);
+    }
     
 }
