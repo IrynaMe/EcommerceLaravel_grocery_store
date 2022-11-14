@@ -100,7 +100,8 @@
                     <div class="col-md-3 top_brand_left" style="min-height:500px; width:280px">
                         <div class="hover14 column">
                             <div class="agile_top_brand_left_grid" style="height:440px">
-                                <div class="tag"><img src="tema/Images/tag.png" alt=" " class="img-responsive" />
+                                <div class="tag"><img src="tema/Images/tag.png" alt=" " class="img-responsive"
+                                        style="z-index:20;" />
                                 </div>
                                 <div class="agile_top_brand_left_grid1" style="height:419px">
                                     <figure>
@@ -193,8 +194,8 @@
                         <div class="col-md-3 top_brand_left" style="min-height:500px; width:280px">
                             <div class="hover14 column">
                                 <div class="agile_top_brand_left_grid" style="height:440px">
-                                    <div class="tag"><img src="tema/Images/tag.png" alt=" "
-                                            class="img-responsive" />
+                                    <div class="tag"><img src="tema/Images/novita.png" alt=" "
+                                            class="img-responsive" style="margin-top: 20px;height:50px; z-index:20;" />
                                     </div>
                                     <div class="agile_top_brand_left_grid1" style="height:419px">
                                         <figure>
