@@ -1,0 +1,38 @@
+Qui aggiorniamo le quantita nel prodotto 
+In cart.blade.php
+
+<form action="{{ url('/update_qty/' . $product['product_id']) }}" method="POST">
+{ csrf_field() }}
+    <td class="quantity">
+            <div class="input-group ">
+                <div class="row">
+                     <div class="col-md-6">
+                             <input type="number" name="quantity"
+                                class="quantity form-control input-number"
+                                value="{{ $product['qty'] }}" min="1" max="80">
+                    </div>
+                    <div class="col-md-6">
+                    <input type="submit" class="btn btn-success" value="Aggiorna Qta"
+                    min="1" max="80">
+                </div>
+                </div>
+                </div>
+        </td>
+ </form>
+in web.php 
+Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
+in TemaController 
+public function update_qty(Request $request, $id)
+    {
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        
+        $cart->updateQty($id, $request->quantity);
+        
+        Session::put('cart', $cart);
+
+        // dd(Session::get('cart'));
+        return back();
+    }
+    Qui viene richiamata la funzione update di Cart.php che sostisutisce 
+    la quantita immagazzinwa con quella indicata nell input 

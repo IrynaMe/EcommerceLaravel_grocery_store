@@ -1,0 +1,78 @@
+Per prima cosa creiamo una tabella amministraore
+ php artisan make:model Amministratore -m
+ 
+ Nel file di migrazione 
+ 2022_02_13_124931_create_amministratores_table
+  public function up()
+    {
+        Schema::create('amministratores', function (Blueprint $table) {
+            $table->id();
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+        });
+    }
+php artisan migrate. Si crea la tabella Amministratores
+
+Inseriamo a mano un amministratore. Password md5
+In form.blade.php 
+<form onsubmit="return checkForm_log(this);" action="/loginAmmre" method="post">
+In web. php 
+Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
+In AdminController
+
+public function loginAmmre(Request $request)
+    {
+        $this->validate($request, ['email' => 'email|required',
+                                   'password' => 'required' ]);
+
+        $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
+
+        if ($Amministratore) {
+            $password=md5($request->input('password'));
+            echo $password."<br>";
+            $passwordDB= ($Amministratore->password);
+            echo $passwordDB;
+            if ($password == $passwordDB) {
+                Session::put('amministratore', $Amministratore);
+                // echo 'passo da qui';
+       
+                return redirect('/dashboard');
+               
+        
+                ;
+            } else {
+                return back()->with('status', 'Email o password non corretta');
+            }
+        } else {
+            return back()->with('status', 'Non hai un account con questa email');
+        }
+    }
+  le prime istruzioni servono  validare il contenuto che viene digitato nei form 
+  Poi   $password=md5($request->input('password')); raccolgie il contenuto del input in form.blade.php con 
+  name="password" e lo confronta con quello nel DB e che ha come email    
+  $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
+  
+  Ultmo in home.blade.php  
+  
+  @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+    @if (Session::has('status'))
+        <div class="alert alert-primary" role="alert">
+            {{ Session::get('status') }}
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
+    per mostrare errori oppure messaggi di successo.
+  
+  
+    
+

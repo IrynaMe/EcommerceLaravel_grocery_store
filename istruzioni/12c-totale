@@ -1,0 +1,62 @@
+in cart.blade.php
+
+<div class="checkout-left">
+            <div class="col-md-4 checkout-left-basket">
+                <h4>Continue to basket</h4>
+                <ul>
+                    @if (Session::has('cart'))
+                        <table class="table text-center">
+                            <th class="text-center">Nome </th>
+                            <th>Quantità</th>
+
+                            <th>Valore Totale</th>
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{ $product['product_name'] }}</td>
+
+
+
+                                    <td>{{ $product['qty'] }}</td>
+
+                                    <?php
+                                    if ($product['product_discount'] > 0) {
+                                        $price = $product['product_discount'];
+                                    } else {
+                                        $price = $product['product_price'];
+                                    }
+                                    
+                                    ?>
+                                    <td class="total">{{ $product['qty'] * $price }}
+                                        <?php
+                                        $total = $product['qty'] * $price;
+                                        
+                                        ?>
+
+                                    </td>
+
+                                </tr>
+
+
+                            @endforeach
+                            {{-- <tr>
+
+                                <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice : null }}</span>
+                            </tr> --}}
+
+                            <tr>
+                                <td>
+                                    <span class="total">Prezzo Totale </span>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <span class="total">
+                                        {{ Session::get('cart')->totalPrice }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    @endif
+                </ul>
+
+
+</div>

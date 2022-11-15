@@ -1,0 +1,37 @@
+Qui rimuoviamo un prodotto dal carrello
+In cart.blade.php
+  <td class="invert">
+            <div class="rem">
+                <a href="{{ url('/remove/' . $product['product_id']) }}">
+                <div class="close1"> </div>
+                </a>
+                </div>
+
+    </td>
+Cioe' passiamo id del prodotto da eliminare
+In web.php
+Route::any('/remove/{id}', [TemaController::class, 'remove']);
+in TemaController.php 
+public function remove($id)
+    {
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+       
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        //dd(Session::get('cart'));
+        return redirect('/cart');
+    }
+Si invoca la funzione remove in Cart.php che ha il compito di rimuovere in prodotto dalla sessione 
+
+public function removeItem($id)
+        {
+            $this->totalQty -= $this->items[$id]['qty'];
+            $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
+            unset($this->items[$id]);
+        }
