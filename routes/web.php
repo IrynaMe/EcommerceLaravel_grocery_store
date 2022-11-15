@@ -28,12 +28,13 @@ Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
 Route::any('/login', [TemaController::class, 'login']);
 
-//single dproduct
+//single product
 Route::any('/single/{id}', [TemaController::class, 'singolo']);
 
 //routing cart
 Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
+Route::any('/remove/{id}', [TemaController::class, 'remove']);
 
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);
@@ -42,6 +43,7 @@ Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
 Route::get('/ordini', [AdminController::class, 'ordini']);
+//gestire UTENTI
 //modifica utente
 Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
 Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);
@@ -53,6 +55,7 @@ Route::any('/delete/{id}', [AdminController::class, 'delete']);
 //create a new product
 Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
 
+//gestire PRODOTTI
 //lista prodotti
 Route::get('/listaProdotti', [AdminController::class, 'listaProdotti']);
 

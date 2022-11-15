@@ -67,6 +67,29 @@ class TemaController extends Controller
         return back();
     }
 
+    public function remove($id)
+    {
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+       
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        //dd(Session::get('cart'));
+        return redirect('/cart');
+    }
+
+    public function removeItem($id)
+        {
+            $this->totalQty -= $this->items[$id]['qty'];
+            $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
+            unset($this->items[$id]);
+        }
+
     public function pagamenti()
     {
         return view('front.pagamenti');
