@@ -154,83 +154,8 @@
 
             </div>
 
-
-
-            <div class="col-md-8 address_form_agile">
-                @if (Session::has('Customer'))
-                    @php
-                        // Session::get('Customer');
-                        // print Session('Customer');
-                    @endphp
-                    <h4>Completa i tuoi dati</h4>
-                    <form action="/completaDati/{{ Session('Customer')->id }}" method="post"
-                        class="creditly-card-form agileinfo_form">
-                        @csrf
-                        <section class="creditly-wrapper wthree, w3_agileits_wrapper">
-                            <div class="information-wrapper">
-                                <div class="first-row form-group">
-                                    <div class="controls">
-                                        <label class="control-label">Nome </label>
-                                        <input class="billing-address-name form-control" type="text" name="nome"
-                                            placeholder="Nome" name="nome" value="{{ Session('Customer')->nome }}">
-                                    </div>
-                                    <div class="w3_agileits_card_number_grids">
-                                        <div class="w3_agileits_card_number_grid_left">
-                                            <div class="controls">
-                                                <label class="control-label">Cognome</label>
-                                                <input class="form-control" type="text" placeholder="Cognome"
-                                                    name="cognome" value="{{ Session('Customer')->cognome }}">
-                                            </div>
-                                        </div>
-                                        <div class="w3_agileits_card_number_grid_right">
-                                            <div class="controls">
-                                                <label class="control-label">Indirizzo</label>
-                                                <input class="form-control" type="text" placeholder="Indirizzo"
-                                                    name="indirizzo" value="{{ Session('Customer')->indirizzo }}">
-                                            </div>
-                                        </div>
-                                        <div class="clear"> </div>
-                                    </div>
-                                    <div class="controls">
-                                        <label class="control-label">Citta' </label>
-                                        <input class="form-control" type="text" placeholder="Citta' " name="citta"
-                                            value="{{ Session('Customer')->citta }}">
-                                    </div>
-                                    <div class="controls">
-                                        <label class="control-label">Nazione</label>
-                                        <input class="form-control" type="text" placeholder="nazione' " name="nazione"
-                                            value="{{ Session('Customer')->nazione }}">
-                                    </div>
-                                </div>
-                                <button class="submit check_out">Delivery to this Address</button>
-                            </div>
-                        </section>
-                    </form>
-                    @if (Session::has('Aggiorna'))
-                        @php
-                            // print Session('Order');
-                        @endphp
-                        <div class="checkout-right-basket">
-                            <a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
-                                    aria-hidden="true"></span></a>
-
-                        </div>
-                    @endif
-                @else
-                    <div class="col-md-4"></div>
-
-                    <a href="/login" class="offset-md-4">
-                        <button class="btn btn-success">Per continuare aquisto esegui LogIn</button>
-                    </a>
-                @endif
-            </div>
-
-            <div class="clearfix"> </div>
-
         </div>
-
-    </div>
-    <!-- //about -->
+        <!-- //about -->
     </div>
     <div class="clearfix"></div>
     </div>
