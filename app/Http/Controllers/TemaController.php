@@ -27,6 +27,8 @@ class TemaController extends Controller
         return view('front.about');
     }
 
+    //cart
+
     public function cart()
     {
         if (!Session::has('cart')) {
@@ -38,6 +40,31 @@ class TemaController extends Controller
 
         return view('front.cart', ['products' => $cart->items]);
         // return view('front.cart');
+    }
+    public function addCart($id)
+    {
+        $product = Product::find($id);
+        
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        //dd(Session::get('cart'));
+        return back();
+    }
+
+    public function update_qty(Request $request, $id)
+    {
+        $oldCart = Session::has('cart')? Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        
+        $cart->updateQty($id, $request->quantity);
+        
+        Session::put('cart', $cart);
+
+        // dd(Session::get('cart'));
+        return back();
     }
 
     public function pagamenti()
@@ -62,18 +89,8 @@ class TemaController extends Controller
         return view('front.login');
     }
 
-    public function addCart($id)
-    {
-        $product = Product::find($id);
-        
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        Session::put('cart', $cart);
 
-        //dd(Session::get('cart'));
-        return back();
-    }
+    
 
     //single product
     public function singolo($id)

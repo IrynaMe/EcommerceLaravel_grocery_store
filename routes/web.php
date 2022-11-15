@@ -33,6 +33,7 @@ Route::any('/single/{id}', [TemaController::class, 'singolo']);
 
 //routing cart
 Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
+Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);

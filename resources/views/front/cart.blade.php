@@ -51,7 +51,7 @@
                                 </td> --}}
 
                                 <form action="{{ url('/update_qty/' . $product['product_id']) }}" method="POST">
-                                    {{ csrf_field() }}
+                                    @csrf
                                     <td class="quantity">
                                         <div class="input-group ">
                                             <div class="row">
@@ -60,9 +60,7 @@
                                                         class="quantity form-control input-number"
                                                         value="{{ $product['qty'] }}" min="1" max="80">
                                                 </div>
-
                                                 <div class="col-md-6">
-
                                                     <input type="submit" class="btn btn-success" value="Aggiorna Qta"
                                                         min="1" max="80">
                                                 </div>
