@@ -38,12 +38,15 @@ Route::any('/remove/{id}', [TemaController::class, 'remove']);
 
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);
+Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
 Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
 Route::get('/ordini', [AdminController::class, 'ordini']);
+
 //gestire UTENTI
+
 //modifica utente
 Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);
 Route::any('/aggiornaCustomer', [AdminController::class, 'aggiornaCustomer']);

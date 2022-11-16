@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 //nel caso si utilizzi per le query i models
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Amministratore;
 //uso dele sessioni
 use Session;
 
@@ -104,6 +105,34 @@ class AdminController extends Controller
         $customer->delete();
         Session::put('success', 'Utente Cancellato');
         return redirect('/listaUtenti');
+    }
+
+    public function loginAmmre(Request $request)
+    {
+        $this->validate($request, ['email' => 'email|required',
+                                   'password' => 'required' ]);
+
+        $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
+
+        if ($Amministratore) {
+            $password=md5($request->input('password'));
+            echo $password."<br>";
+            $passwordDB= ($Amministratore->password);
+            echo $passwordDB;
+            if ($password == $passwordDB) {
+                Session::put('amministratore', $Amministratore);
+                // echo 'passo da qui';
+       
+                return redirect('/dashboard');
+               
+        
+                
+            } else {
+                return back()->with('status', 'Email o password non corretta');
+            }
+        } else {
+            return back()->with('status', 'Non hai un account con questa email');
+        }
     }
 
     public function salvaProdotto(Request $request)

@@ -1,4 +1,4 @@
-<h3 style="text-align:center">Nuovo Ammnistratore</h3>
+<h3 style="text-align:center">Nuovo Utente</h3>
 <div class="col">
     <div class="col-8">
         <h3 class="card-title text-center">Crea Utente </h3>
