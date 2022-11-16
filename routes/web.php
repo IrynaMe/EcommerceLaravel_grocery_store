@@ -36,6 +36,9 @@ Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 Route::any('/remove/{id}', [TemaController::class, 'remove']);
 
+//login utente
+Route::any('/accesso', [TemaController::class, 'accesso']);
+
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);
 Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
@@ -46,6 +49,8 @@ Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
 Route::get('/ordini', [AdminController::class, 'ordini']);
 
 //gestire UTENTI
+
+
 
 //modifica utente
 Route::any('/editCustomer/{id}', [AdminController::class, 'editCustomer']);

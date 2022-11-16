@@ -83,8 +83,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="mega-dropdown-menu">
                         <div class="w3ls_vegetables">
                             <ul class="dropdown-menu drp-mnu">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="login.html">Sign Up</a></li>
+                                @if (Session::has('Customer'))
+                                    <li><a href="/logout">Logout</a></li>
+                                @else
+                                    <li><a href="/login">Login</a></li>
+                                    <li><a href="/login">Sign Up</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -261,22 +265,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script>
         /* paypal.minicart.render();
 
-                                                		paypal.minicart.cart.on('checkout', function (evt) {
-                                                			var items = this.items(),
-                                                				len = items.length,
-                                                				total = 0,
-                                                				i;
+                                                                                            		paypal.minicart.cart.on('checkout', function (evt) {
+                                                                                            			var items = this.items(),
+                                                                                            				len = items.length,
+                                                                                            				total = 0,
+                                                                                            				i;
 
-                                                			// Count the number of each item in the cart
-                                                			for (i = 0; i < len; i++) {
-                                                				total += items[i].get('quantity');
-                                                			}
+                                                                                            			// Count the number of each item in the cart
+                                                                                            			for (i = 0; i < len; i++) {
+                                                                                            				total += items[i].get('quantity');
+                                                                                            			}
 
-                                                			if (total < 3) {
-                                                				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-                                                				evt.preventDefault();
-                                                			}
-                                                		}); */
+                                                                                            			if (total < 3) {
+                                                                                            				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                                                                                            				evt.preventDefault();
+                                                                                            			}
+                                                                                            		}); */
     </script>
 </body>
 

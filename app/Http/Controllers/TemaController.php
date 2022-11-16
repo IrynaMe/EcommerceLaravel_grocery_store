@@ -106,10 +106,37 @@ class TemaController extends Controller
         return view('front.shop')->with('products', $products);
     }
     
-
+  //login utente
     public function login()
     {
         return view('front.login');
+    }
+
+  
+    public function accesso(Request $request)
+    {
+        $this->validate($request, ['email' => 'email|required',
+                                'password' => 'required' ]);
+
+        $Customer  = Customer::where('email', $request->input('email'))->first();
+
+        if ($Customer) {
+            $password=md5($request->input('password'));
+            echo $password."<br>";
+            $passwordDB= ($Customer->password);
+            echo $passwordDB;
+            if ($password == $passwordDB) {
+                Session::put('Customer', $Customer);
+                // echo 'passo da qui';
+
+                return redirect('/cart')->with('status', 'Utente loggato correttamente');
+
+            } else {
+                return back()->with('status', 'Email o password non corretta');
+            }
+        } else {
+            return back()->with('status', 'Non hai un account con questa email');
+        }
     }
 
 
