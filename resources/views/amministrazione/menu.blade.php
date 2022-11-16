@@ -14,10 +14,6 @@ sans-serif;font-size:25px;width:80%;margin-bottom:5px;color:#124b61">
         Dashboard
     </a>
 
-    <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/loginAmmre">
-        Amministratore
-    </a>
-
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/creaUtenti">Crea Utenti</a>
 
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/listaUtenti">

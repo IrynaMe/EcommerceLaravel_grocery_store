@@ -1,0 +1,62 @@
+nel file front/login.blade.php
+    <h2>Accedi al tuo Account</h2>
+    <form action="/accesso" method="post">
+In web.php
+Route::any('/accesso', [TemaController::class, 'accesso']);
+IN TemaController
+la stessa funzione per il login amministrazione, ma fatta sul model già creato Customer
+public function accesso(Request $request)
+    {
+        $this->validate($request, ['email' => 'email|required',
+        'password' => 'required' ]);
+
+        $Customer  = Customer::where('email', $request->input('email'))->first();
+
+        if ($Customer) {
+            $password=md5($request->input('password'));
+            echo $password."<br>";
+            $passwordDB= ($Customer->password);
+            echo $passwordDB;
+            if ($password == $passwordDB) {
+                Session::put('Customer', $Customer);
+                // echo 'passo da qui';
+
+                return redirect('/cart')->with('status', 'Utente loggato correttamente');
+                ;
+
+
+                ;
+            } else {
+                return back()->with('status', 'Email o password non corretta');
+            }
+        } else {
+            return back()->with('status', 'Non hai un account con questa email');
+        }
+    }
+    in login.blade.php raccogliamo messaggi e errori 
+    @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (Session::has('status'))
+                <div class="alert alert-primary" role="alert">
+                    {{ Session::get('status') }}
+                    {{ Session::put('status', null) }}
+                </div>
+            @endif
+
+In cart.blade.php 
+@if (Session::has('status'))
+        <div class="alert alert-secondary">
+            <h3> {{ Session::get('status') }}</h3>
+
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
+Messaggio che utente si è registrato correttamente 
+    

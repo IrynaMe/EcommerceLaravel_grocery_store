@@ -1,5 +1,21 @@
 <div class="container" style="margin-top:40px;text-align:center;">
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+    @if (Session::has('status'))
+        <div class="alert alert-primary" role="alert">
+            {{ Session::get('status') }}
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
 
     <br>
     <div class="global-container">
@@ -7,8 +23,8 @@
             <div class="card-body">
                 <h3 class="card-title text-center">
                     Log ecommerce Admin</h3>
-                <div class="card-text">
 
+                <div class="card-text">
                     <form onsubmit="return checkForm_log(this);" action="/loginAmmre" method="post">
                         @csrf
                         <div class="form-group">
@@ -28,26 +44,6 @@
                         <button type="submit" class="btn btn-primary btn-block">Invia</button>
 
                     </form>
-                </div>
-                <div class="messaggio">
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                    @endif
-                    @if (Session::has('status'))
-                        <div class="alert alert-primary" role="alert">
-                            {{ Session::get('status') }}
-                            {{ Session::put('status', null) }}
-                        </div>
-                    @endif
-
                 </div>
             </div>
         </div>

@@ -113,7 +113,6 @@ class AdminController extends Controller
                                    'password' => 'required' ]);
 
         $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
-
         if ($Amministratore) {
             $password=md5($request->input('password'));
             echo $password."<br>";
@@ -121,12 +120,9 @@ class AdminController extends Controller
             echo $passwordDB;
             if ($password == $passwordDB) {
                 Session::put('amministratore', $Amministratore);
+               // Session::put('admin', $Amministratore);
                 // echo 'passo da qui';
-       
-                return redirect('/dashboard');
-               
-        
-                
+                return redirect('/dashboard')->with('amminisratore', 'Welcome, Admin!');            
             } else {
                 return back()->with('status', 'Email o password non corretta');
             }
