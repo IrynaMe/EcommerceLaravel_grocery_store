@@ -168,6 +168,9 @@ public function registrati(Request $request)
     public function logout()
     {
         Session::forget('Customer');
+        if (Session::has('Aggiorna')){
+            Session::forget('Aggiorna');
+        }
 
         return redirect('/');
     }

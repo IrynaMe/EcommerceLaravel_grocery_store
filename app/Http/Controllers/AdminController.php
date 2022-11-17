@@ -115,9 +115,9 @@ class AdminController extends Controller
         $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
         if ($Amministratore) {
             $password=md5($request->input('password'));
-            echo $password."<br>";
+            //echo $password."<br>";
             $passwordDB= ($Amministratore->password);
-            echo $passwordDB;
+            //echo $passwordDB;
             if ($password == $passwordDB) {
                 Session::put('amministratore', $Amministratore);
                // Session::put('admin', $Amministratore);
