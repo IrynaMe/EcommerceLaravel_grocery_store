@@ -32,7 +32,7 @@
                         <input type="submit" value="Login">
                     </form>
                 </div>
-                <div class="form">
+                <div class="form" id="registrazione">
                     <h2>Create an account</h2>
                     <form action="/registrati" method="post">
                         @csrf

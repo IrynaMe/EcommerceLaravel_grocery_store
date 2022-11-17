@@ -39,6 +39,10 @@ Route::any('/remove/{id}', [TemaController::class, 'remove']);
 Route::any('/registrati', [TemaController::class, 'registrati']);
 //login utente
 Route::any('/accesso', [TemaController::class, 'accesso']);
+//logout utente
+Route::any('/logout', [TemaController::class, 'logout']);
+//aggiorna utente
+Route::any('/completaDati/{id}', [TemaController::class, 'completaDati']);
 
 //area amministrativa
 Route::any('/admin', [AdminController::class, 'home']);

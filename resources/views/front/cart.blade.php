@@ -160,8 +160,8 @@
             <div class="col-md-8 address_form_agile">
                 @if (Session::has('Customer'))
                     @php
-                        // Session::get('Customer');
-                        // print Session('Customer');
+                        //Session::get('Customer');
+                        //print Session('Customer');
                     @endphp
                     <h4>Completa i tuoi dati</h4>
                     <form action="/completaDati/{{ Session('Customer')->id }}" method="post"

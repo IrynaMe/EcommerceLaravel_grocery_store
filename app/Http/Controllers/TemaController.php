@@ -163,7 +163,33 @@ public function registrati(Request $request)
     }
 
 
-    
+    //logout utente
+   
+    public function logout()
+    {
+        Session::forget('Customer');
+
+        return redirect('/');
+    }
+
+    //aggiorna utente
+    public function completaDati(Request $request, $id)
+    {
+        $aggiorna = Customer::where('id', $id)->first();
+        $aggiorna->nome = $request->input('nome');
+        $aggiorna->cognome = $request->input('cognome');
+        $aggiorna->indirizzo = $request->input('indirizzo');
+        $aggiorna->citta = $request->input('citta');
+        $aggiorna->nazione = $request->input('nazione');
+        
+      
+        $aggiorna->save();
+        //cosi aggiorno la sessione Customer con i dati modificati
+        Session::put('Customer', $aggiorna);
+              //cosi creo la sessione Aggiorna  con i dati inseriti
+        Session::put('Aggiorna', $aggiorna);
+        return redirect('/cart')->with('status', 'hai aggiornato i dati');
+    }
 
     //single product
     public function singolo($id)

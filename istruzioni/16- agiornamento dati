@@ -1,0 +1,163 @@
+Per effettuare un ordine occorre
+-effettuare il login
+-aggiornare i dati di spedizione
+
+Per questo in cart.blade.php
+
+  @if (Session::has('Customer'))
+    @php
+                        // Session::get('Customer');
+                        // print Session('Customer');
+    @endphp
+    Il dato di input dei dati deve essere visibile solo se è stato effettuato il login
+    
+<h4>Completa i tuoi dati</h4>
+<form action="/completaDati/{{ Session('Customer')->id }}" method="post"
+                        class="creditly-card-form agileinfo_form">
+                        
+//input per aggiornamento dati:
+ nome, cognome, indirizzo, città, nazione . 
+ Ognuno con un name = per convenzione al nome delle colonne della tabella users
+
+ecco il codice completo</form>
+@if (Session::has('Aggiorna'))
+<div class="checkout-right-basket">
+<a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
+ aria-hidden="true"></span></a>
+</div>
+@endif
+
+@else
+<div class="col-md-4"></div>
+<a href="/login" class="offset-md-4">
+<button class="btn btn-success">Per continuare aquisto esegui LogIn</button>
+</a>
+@endif
+</div>
+
+Quindi poiche all'inzio se non sono loggato, la Session::has('Customer'), non esiste
+Vine mostrato il pulsante Per continuare aquisto esegui LogIn
+Che porta attraverso  /login e la funzione  TemaController al login 
+Dove 
+<form action="/accesso" method="post">
+.. 
+</form>
+la funzione di accesso in TemaControlelr già esistente crea la sessione 
+Session::put('Customer', $Customer);
+Utilizziamo questa sessione per dare valore agli input del form aggiorna
+<form action="/completaDati/{{ Session('Customer')->id }}" method="post"
+                        class="creditly-card-form agileinfo_form">
+                        
+<input class="billing-address-name form-control" type="text" name="nome"
+placeholder="Nome" name="nome" value="{{ Session('Customer')->nome }}">
+...... altri input
+                    
+</form>
+/completaDati/{{ Session('Customer')->id }} è richiamato in web.php 
+------------------------------------------------
+ecco il codice completo
+
+<div class="col-md-8 address_form_agile">
+    @if (Session::has('Customer'))
+        @php
+            // Session::get('Customer');
+            // print Session('Customer');
+        @endphp
+        <h4>Completa i tuoi dati</h4>
+        <form action="/completaDati/{{ Session('Customer')->id }}" method="post"
+            class="creditly-card-form agileinfo_form">
+            @csrf
+            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Nome </label>
+                            <input class="billing-address-name form-control" type="text" name="nome"
+                                placeholder="Nome" name="nome" value="{{ Session('Customer')->nome }}">
+                        </div>
+                        <div class="w3_agileits_card_number_grids">
+                            <div class="w3_agileits_card_number_grid_left">
+                                <div class="controls">
+                                    <label class="control-label">Cognome</label>
+                                    <input class="form-control" type="text" placeholder="Cognome"
+                                        name="cognome" value="{{ Session('Customer')->cognome }}">
+                                </div>
+                            </div>
+                            <div class="w3_agileits_card_number_grid_right">
+                                <div class="controls">
+                                    <label class="control-label">Indirizzo</label>
+                                    <input class="form-control" type="text" placeholder="Indirizzo"
+                                        name="indirizzo" value="{{ Session('Customer')->indirizzo }}">
+                                </div>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Citta' </label>
+                            <input class="form-control" type="text" placeholder="Citta' " name="citta"
+                                value="{{ Session('Customer')->citta }}">
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Nazione</label>
+                            <input class="form-control" type="text" placeholder="nazione' " name="nazione"
+                                value="{{ Session('Customer')->nazione }}">
+                        </div>
+                    </div>
+                    <button class="submit check_out">Delivery to this Address</button>
+                </div>
+            </section>
+        </form>
+        @if (Session::has('Aggiorna'))
+            @php
+                // print Session('Order');
+            @endphp
+            <div class="checkout-right-basket">
+                <a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
+                        aria-hidden="true"></span></a>
+
+            </div>
+        @endif
+    @else
+        <div class="col-md-4"></div>
+
+        <a href="/login" class="offset-md-4">
+            <button class="btn btn-success">Per continuare aquisto esegui LogIn</button>
+        </a>
+    @endif
+</div>
+
+------------
+
+Route::any('/completaDati/{id}', [TemaController::class, 'completaDati']);
+e in TemaController.php 
+public function completaDati(Request $request, $id)
+    {
+        $aggiorna = Customer::where('id', $id)->first();
+        $aggiorna->nome = $request->input('nome');
+        $aggiorna->cognome = $request->input('cognome');
+        $aggiorna->indirizzo = $request->input('indirizzo');
+        $aggiorna->citta = $request->input('citta');
+        $aggiorna->nazione = $request->input('nazione');
+        
+      
+        $aggiorna->save();
+        //cosi aggiorno la sessione Customer con i dati modificati
+        Session::put('Customer', $aggiorna);
+              //cosi creo la sessione Aggiorna  con i dati inseriti
+        Session::put('Aggiorna', $aggiorna);
+        return redirect('/cart')->with('status', 'hai aggiornato i dati');
+    }
+    
+Per semplicita Non abbiamo inserito il validati o che avrei potuto aggiungere 
+Con questa funzione abbiamo creato la Sessione aggiorna e quindi
+@if (Session::has('Aggiorna'))
+<div class="checkout-right-basket">
+<a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
+ aria-hidden="true"></span></a>
+</div>
+@endif
+
+al click di <a href="/ProcediOrdine"></a>
+Si va attraverso web.php 
+Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
+In tema controller alla funzione ProcediOrdine

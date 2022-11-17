@@ -95,6 +95,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                @include('amministrazione/footer')
+    @include('amministrazione/footer')
+@else
+    <a href="{{ url('/admin') }}">Login come admin</a>
 @endif

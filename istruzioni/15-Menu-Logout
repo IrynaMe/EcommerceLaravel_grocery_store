@@ -1,0 +1,25 @@
+Una volta loggato deve cambiare il menu, collegamento a logout 
+
+ <div class="mega-dropdown-menu">
+    <div class="w3ls_vegetables">
+        <ul class="dropdown-menu drp-mnu">
+
+         @if (Session::has('Customer'))
+            <li><a href="/logout">Logout</a></li>
+        @else
+            <li><a href="/login">Login</a></li>
+            <li><a href="/login">Sign Up</a></li>
+         @endif
+        </ul>
+    </div>
+</div>
+
+In web.php
+Route::any('/logout', [TemaController::class, 'logout']);
+In TemaController
+ public function logout()
+    {
+        Session::forget('Customer');
+
+        return redirect('/');
+    }
