@@ -19,13 +19,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
-    <link href="../tema/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="../tema/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href={{ '/tema/css/bootstrap.css' }} rel="stylesheet" type="text/css" media="all" />
+    <link href={{ '/tema/css/style.css' }} rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome icons -->
-    <link href="../tema/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+    <link href={{ '/tema/css/font-awesome.css' }} rel="stylesheet" type="text/css" media="all" />
     <!-- //font-awesome icons -->
     <!-- js -->
-    <script src="../tema/js/jquery-1.11.1.min.js"></script>
+    <script src={{ '/tema/js/jquery-1.11.1.min.js' }}></script>
     <!-- //js -->
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
         rel='stylesheet' type='text/css'>
@@ -33,8 +33,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
         rel='stylesheet' type='text/css'>
     <!-- start-smoth-scrolling -->
-    <script type="text/javascript" src="../tema/js/move-top.js"></script>
-    <script type="text/javascript" src="../tema/js/easing.js"></script>
+    <script type="text/javascript" src={{ '/tema/js/move-top.js' }}></script>
+    <script type="text/javascript" src={{ '/tema/js/easing.js' }}></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event) {
@@ -197,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
                     <div class="w3_footer_grid_bottom">
                         <h4>100% secure payments</h4>
-                        <img src="../tema/images/card.png" alt=" " class="img-responsive" />
+                        <img src={{ '/tema/images/card.png' }} alt=" " class="img-responsive" />
                     </div>
                 </div>
                 <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
@@ -227,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!-- //footer -->
     <!-- Bootstrap Core JavaScript -->
-    <script src="../tema/js/bootstrap.min.js"></script>
+    <script src={{ '/tema/js/bootstrap.min.js' }}></script>
     <script>
         $(document).ready(function() {
             $(".dropdown").hover(
@@ -261,26 +261,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //here ends scrolling icon -->
-    <script src="../tema/js/minicart.js"></script>
+    <script src={{ '/tema/js/minicart.js' }}></script>
     <script>
         /* paypal.minicart.render();
 
-                                                                                            		paypal.minicart.cart.on('checkout', function (evt) {
-                                                                                            			var items = this.items(),
-                                                                                            				len = items.length,
-                                                                                            				total = 0,
-                                                                                            				i;
+                                                                                                                                		paypal.minicart.cart.on('checkout', function (evt) {
+                                                                                                                                			var items = this.items(),
+                                                                                                                                				len = items.length,
+                                                                                                                                				total = 0,
+                                                                                                                                				i;
 
-                                                                                            			// Count the number of each item in the cart
-                                                                                            			for (i = 0; i < len; i++) {
-                                                                                            				total += items[i].get('quantity');
-                                                                                            			}
+                                                                                                                                			// Count the number of each item in the cart
+                                                                                                                                			for (i = 0; i < len; i++) {
+                                                                                                                                				total += items[i].get('quantity');
+                                                                                                                                			}
 
-                                                                                            			if (total < 3) {
-                                                                                            				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-                                                                                            				evt.preventDefault();
-                                                                                            			}
-                                                                                            		}); */
+                                                                                                                                			if (total < 3) {
+                                                                                                                                				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                                                                                                                                				evt.preventDefault();
+                                                                                                                                			}
+                                                                                                                                		}); */
     </script>
 </body>
 

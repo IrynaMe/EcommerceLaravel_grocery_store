@@ -6,7 +6,7 @@
             <div class="col-md-4 agileinfo_single_left">
 
                 <img style="width:450px;" title="{{ $product->name }}" alt="{{ $product->name }}"
-                    src="../tema/{{ $product->image }}" class="img-responsive" id="example" />
+                    src="{{ url('/tema/' . $product->image) }}" class="img-responsive" id="example" />
             </div>
             <div class="col-md-8 agileinfo_single_right">
 
