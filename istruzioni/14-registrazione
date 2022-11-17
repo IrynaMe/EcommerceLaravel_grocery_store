@@ -1,0 +1,61 @@
+in login.blade.php
+ <form action="/registrati" method="post">
+    @csrf
+    <input type="email" name="email" placeholder="Email Address" required=" ">
+    <input type="password" name="password" placeholder="Password" required=" ">
+    <input type="submit" value="Register">
+ </form>
+ 
+ In web.php 
+ Route::any('/registrati', [TemaController::class, 'registrati']);
+ in TemaController
+ public function registrati(Request $request)
+    {
+        //istruzioni per la validazione
+        $this->validate($request, ['email' => 'email|required',
+        'password' => 'required|min:6' ]);
+        
+        //istanza del Model Customer
+        $Customer = new Customer();
+        
+        //catturo i dati di input nel form e md5 -cripto la password
+        $Customer->email = $request->input('email');
+        $Customer->password = md5($request->input('password'));
+        
+        //salva nella tabella Customer
+        $Customer->save();
+        
+        //redirect a cart con messaggio da mostrare: status
+        return redirect('/cart')->with('status', 'Il tuo account è stato creato !!');
+    }
+    
+    In login.blade.php 
+    
+    @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (Session::has('status'))
+                <div class="alert alert-primary" role="alert">
+                    {{ Session::get('status') }}
+                    {{ Session::put('status', null) }}
+                </div>
+            @endif
+catturo errori e status 
+
+In cart.blade.php 
+@if (Session::has('status'))
+        <div class="alert alert-secondary">
+            <h3> {{ Session::get('status') }}</h3>
+
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
+Messaggio che utente si è registrato correttamente 
+  
+  

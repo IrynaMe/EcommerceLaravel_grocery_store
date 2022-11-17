@@ -1,5 +1,20 @@
 @extends('front.layout')
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-warning" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('status'))
+        <div class="alert alert-primary" role="alert">
+            {{ Session::get('status') }}
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
     <!-- login -->
     <div class="w3_login">
         <h3>Sign In & Sign Up</h3>
@@ -19,12 +34,10 @@
                 </div>
                 <div class="form">
                     <h2>Create an account</h2>
-                    <form action="#" method="post">
+                    <form action="/registrati" method="post">
                         @csrf
-                        <input type="text" name="Username" placeholder="Username" required=" ">
-                        <input type="password" name="Password" placeholder="Password" required=" ">
-                        <input type="email" name="Email" placeholder="Email Address" required=" ">
-                        <input type="text" name="Phone" placeholder="Phone Number" required=" ">
+                        <input type="email" name="email" placeholder="Email Address" required=" ">
+                        <input type="password" name="password" placeholder="Password" required=" ">
                         <input type="submit" value="Register">
                     </form>
                 </div>

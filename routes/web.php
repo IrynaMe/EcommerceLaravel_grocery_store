@@ -35,7 +35,8 @@ Route::any('/single/{id}', [TemaController::class, 'singolo']);
 Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 Route::any('/remove/{id}', [TemaController::class, 'remove']);
-
+//registra utente
+Route::any('/registrati', [TemaController::class, 'registrati']);
 //login utente
 Route::any('/accesso', [TemaController::class, 'accesso']);
 

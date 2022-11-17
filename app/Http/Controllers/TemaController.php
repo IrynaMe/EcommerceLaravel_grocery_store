@@ -105,6 +105,29 @@ class TemaController extends Controller
         $products= Product::paginate(8);
         return view('front.shop')->with('products', $products);
     }
+
+//registra utente
+public function registrati(Request $request)
+    {
+        //istruzioni per la validazione
+        $this->validate($request, ['email' => 'email|required',
+        'password' => 'required|min:6' ]);
+        
+        //istanza del Model Customer
+        $Customer = new Customer();
+        
+        //catturo i dati di input nel form e md5 -cripto la password
+        $Customer->email = $request->input('email');
+        $Customer->password = md5($request->input('password'));
+        
+        //salva nella tabella Customer
+
+        $Customer->save();
+        Session::put('Customer', $Customer);
+        Session::put('status', 'Il tuo account e stato creato!');
+        //redirect a cart con messaggio da mostrare: status
+        return redirect('/cart');
+    }
     
   //login utente
     public function login()
