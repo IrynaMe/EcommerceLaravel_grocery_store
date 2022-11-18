@@ -37,7 +37,7 @@ Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
-Route::get('/ordini', [AdminController::class, 'ordini']);
+
 
 //gestire UTENTI--------------------
 
@@ -80,3 +80,7 @@ Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 Route::any('/remove/{id}', [TemaController::class, 'remove']);
 Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
+
+//Gestire ORDINI
+//Route::get('/ordini', [AdminController::class, 'ordini']);
+Route::any('/ordini', [AdminController::class, 'listaOrdini']);

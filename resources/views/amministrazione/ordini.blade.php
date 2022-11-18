@@ -1,4 +1,3 @@
-
 {{-- // include('config.php');
 // // if(!isset($_COOKIE["email_log"])){
 // //     header('location: index.php');
@@ -7,19 +6,18 @@
 @include('amministrazione/header')
 
 
-<div class="container-fluid" 
-style="margin-top:50px">
+<div class="container-fluid" style="margin-top:50px">
     <div class="row">
         <div class="col-4">
             @include('amministrazione/menu')
         </div>
         <div class="col-8">
-            
+
             <br>
-            <table class="table table-responsive table-hover table-striped table-bordered " >
+            <table class="table table-responsive table-hover table-striped table-bordered ">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col" >id ordine</th>
+                        <th scope="col">id ordine</th>
                         <th scope="col">Creato</th>
                         <th scope="col">Tot Ordine</th>
                         <th scope="col">Stato</th>
@@ -32,10 +30,48 @@ style="margin-top:50px">
                     </tr>
                 </thead>
                 <tbody>
-              
+                    @foreach ($orders as $order)
+                        <tr>
+
+                            <td scope="col">{{ $order->id }}</td>
+                            <td scope="col">{{ $order->created_at }}</td>
+                            <td scope="col">{{ $order->prezzo }}</td>
+                            <td scope="col">{{ $order->stato }}</td>
+                            <td scope="col">{{ $order->indirizzo }}</td>
+                            <td scope="col">{{ $order->citta }}</td>
+                            <td scope="col">{{ $order->nome }}</td>
+                            <?php
+                            
+                            $details = unserialize($order->cart);
+                            //echo ' <pre>';
+                            //echo print_r($details);
+                            //echo '</pre>';
+                            
+                            $prezzo = $details->totalPrice;
+                            
+                            ?>
+                            <td scope="col">
+                                <p> prezzo: {{ $prezzo }}</p>
+
+                            </td>
+                            {{-- modifica --}}
+                            <td scope="col">
+                                <a href="/editCustomer/{{ $order->id }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                            {{-- cancella --}}
+                            <td scope="col">
+                                <a href="/delete/{{ $order->id }}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    <div class="d-flex justify-content-center">
+                        {{ $orders->links() }}
+                    </div>
                 </tbody>
             </table>
         </div>
         @include('amministrazione/footer')
-
- 

@@ -213,6 +213,7 @@ class TemaController extends Controller
             $order->nome= (Session('Customer')->email);
             $order->citta= (Session('Aggiorna')->citta);
             $order->cart = serialize($cart);
+
             $order->prezzo= (Session('cart')->totalPrice);
             $order->stato = 1;
             Session::put('Order', $order);

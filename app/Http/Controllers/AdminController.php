@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Amministratore;
+use App\Models\Order;
 //uso dele sessioni
 use Session;
 
@@ -239,7 +240,17 @@ class AdminController extends Controller
         return redirect('/listaProdotti');
     }
 
+    public function listaOrdini()
+    {
+        // return view('amministrazione.listaUtenti');
 
+        //torna il risiultato della query organizzato per pagina
+        //1 = un record per ogni pagination
+        //equivale PHP a
+        $orders = Order::paginate(4);
+        //ritorna la vista aggiungendo il risultato della query $customer
+        return view('amministrazione.ordini')->with('orders', $orders);
+    }
 
 
 

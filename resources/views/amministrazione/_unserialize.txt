@@ -1,0 +1,516 @@
+App\Cart Object
+(
+    [items] => Array
+        (
+            [3] => Array
+                (
+                    [qty] => 1
+                    [product_id] => 3
+                    [product_name] => Mele
+                    [product_discount] => 23.00
+                    [product_price] => 23.00
+                    [product_image] => Images/11.png
+                    [item] => App\Models\Product Object
+                        (
+                            [connection:protected] => mysql
+                            [table:protected] => products
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dates:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalQty] => 1
+    [totalPrice] => 23
+)
+1
+App\Cart Object
+(
+    [items] => Array
+        (
+            [3] => Array
+                (
+                    [qty] => 1
+                    [product_id] => 3
+                    [product_name] => Mele
+                    [product_discount] => 23.00
+                    [product_price] => 23.00
+                    [product_image] => Images/11.png
+                    [item] => App\Models\Product Object
+                        (
+                            [connection:protected] => mysql
+                            [table:protected] => products
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dates:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalQty] => 1
+    [totalPrice] => 23
+)
+1
+App\Cart Object
+(
+    [items] => Array
+        (
+            [3] => Array
+                (
+                    [qty] => 1
+                    [product_id] => 3
+                    [product_name] => Mele
+                    [product_discount] => 23.00
+                    [product_price] => 23.00
+                    [product_image] => Images/11.png
+                    [item] => App\Models\Product Object
+                        (
+                            [connection:protected] => mysql
+                            [table:protected] => products
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 3
+                                    [name] => Mele
+                                    [description] => VLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 28.56
+                                    [discount] => 23.00
+                                    [date] => 2022-11-06 00:00:00
+                                    [category] => 3
+                                    [image] => Images/11.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dates:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalQty] => 1
+    [totalPrice] => 23
+)
+1
+App\Cart Object
+(
+    [items] => Array
+        (
+            [2] => Array
+                (
+                    [qty] => 1
+                    [product_id] => 2
+                    [product_name] => Frutta esotica
+                    [product_discount] => 0.00
+                    [product_price] => 17.50
+                    [product_image] => Images/10.png
+                    [item] => App\Models\Product Object
+                        (
+                            [connection:protected] => mysql
+                            [table:protected] => products
+                            [primaryKey:protected] => id
+                            [keyType:protected] => int
+                            [incrementing] => 1
+                            [with:protected] => Array
+                                (
+                                )
+
+                            [withCount:protected] => Array
+                                (
+                                )
+
+                            [preventsLazyLoading] => 
+                            [perPage:protected] => 15
+                            [exists] => 1
+                            [wasRecentlyCreated] => 
+                            [escapeWhenCastingToString:protected] => 
+                            [attributes:protected] => Array
+                                (
+                                    [id] => 2
+                                    [name] => Frutta esotica
+                                    [description] => Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 17.50
+                                    [discount] => 0.00
+                                    [date] => 2022-11-02 00:00:00
+                                    [category] => 3
+                                    [image] => Images/10.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [original:protected] => Array
+                                (
+                                    [id] => 2
+                                    [name] => Frutta esotica
+                                    [description] => Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut condimentum ex. Nulla eu ultrices purus. Morbi lectus magna, auctor et ultrices aliquet, finibus ut mauris. Curabitur mattis, orci non lobortis scelerisque, erat orci posuere sem, in pellentesque turpis ipsum scelerisque magna. Ut id dolor ac nisi efficitur efficitur.
+                                    [price] => 17.50
+                                    [discount] => 0.00
+                                    [date] => 2022-11-02 00:00:00
+                                    [category] => 3
+                                    [image] => Images/10.png
+                                    [created_at] => 2022-01-28 19:09:43
+                                    [updated_at] => 2022-01-28 19:10:13
+                                )
+
+                            [changes:protected] => Array
+                                (
+                                )
+
+                            [casts:protected] => Array
+                                (
+                                )
+
+                            [classCastCache:protected] => Array
+                                (
+                                )
+
+                            [attributeCastCache:protected] => Array
+                                (
+                                )
+
+                            [dates:protected] => Array
+                                (
+                                )
+
+                            [dateFormat:protected] => 
+                            [appends:protected] => Array
+                                (
+                                )
+
+                            [dispatchesEvents:protected] => Array
+                                (
+                                )
+
+                            [observables:protected] => Array
+                                (
+                                )
+
+                            [relations:protected] => Array
+                                (
+                                )
+
+                            [touches:protected] => Array
+                                (
+                                )
+
+                            [timestamps] => 1
+                            [hidden:protected] => Array
+                                (
+                                )
+
+                            [visible:protected] => Array
+                                (
+                                )
+
+                            [fillable:protected] => Array
+                                (
+                                )
+
+                            [guarded:protected] => Array
+                                (
+                                    [0] => *
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [totalQty] => 1
+    [totalPrice] => 17.5
+)
+1

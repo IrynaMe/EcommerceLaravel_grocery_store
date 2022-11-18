@@ -22,7 +22,7 @@
                     <tr>
                         <th>SL No.</th>
                         <th>Product</th>
-                        <th>Quality</th>
+                        <th>Quantity</th>
                         <th>Product Name</th>
 
                         <th>Price</th>
@@ -37,7 +37,8 @@
                                 <td class="invert">1</td>
                                 <td class="invert-image">
 
-                                    <a href="/{id}"><img src="/tema/{{ $product['product_image'] }}" alt=" "
+                                    <a href="/single/{{ $product['product_id'] }}"><img
+                                            src="/tema/{{ $product['product_image'] }}" alt=" "
                                             class="img-responsive"></a>
                                 </td>
                                 {{-- <td class="invert">

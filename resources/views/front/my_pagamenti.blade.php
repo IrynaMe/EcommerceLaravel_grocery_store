@@ -16,20 +16,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="keywords"
         content="Grocery Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
-    <link href="{{ url('tema/css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
-    <link href=" {{ url('tema/css/style.css') }}" rel=" stylesheet" type="text/css" media="all" />
+    <link href={{ 'tema/css/bootstrap.css' }} rel="stylesheet" type="text/css" media="all" />
+    <link href={{ 'tema/css/style.css' }} rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome icons -->
-    <link href="{{ 'tema/css/font-awesome.css' }}" rel="stylesheet" type="text/css" media="all" />
+    <link href={{ 'tema/css/font-awesome.css' }} rel="stylesheet" type="text/css" media="all" />
     <!-- //font-awesome icons -->
 
     <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
@@ -54,16 +47,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </form>
         </div>
         <div class="product_list_header">
-            <form action="/cart" method="get" class="last">
-                @csrf
+            <form action="#" method="post" class="last">
                 <fieldset>
                     <input type="hidden" name="cmd" value="_cart" />
                     <input type="hidden" name="display" value="1" />
-                    <input type="submit" name="submit" value="Vai alla carta" class="button" />
-                    <span
-                        style="padding:5px 10px;background-color:orange; color:white; 
-                        border-radius:50%">
-                        {{ Session::has('cart') ? Session::get('cart')->totalQty : 0 }}</span>
+                    <input type="submit" name="submit" value="View your cart" class="button" />
                 </fieldset>
             </form>
         </div>
@@ -75,16 +63,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="mega-dropdown-menu">
                         <div class="w3ls_vegetables">
                             <ul class="dropdown-menu drp-mnu">
-
-                                @if (Session::has('Customer'))
-                                    <li><a href="/logout">Logout</a></li>
-                                @else
-                                    <li><a href="/login">Login</a></li>
-                                    <li><a href="/login">Sign Up</a></li>
-                                @endif
-
-
-
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="login.html">Sign Up</a></li>
                             </ul>
                         </div>
                     </div>
@@ -92,19 +72,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </ul>
         </div>
         <div class="w3l_header_right1">
-            <h2><a href="{{ url('/mail') }}">Contact Us</a></h2>
+            <h2><a href="mail.html">Contact Us</a></h2>
         </div>
         <div class="clearfix"> </div>
     </div>
-    @include('front/menu')
 
+    <div class="logo_products">
+        <div class="container">
+            <div class="w3ls_logo_products_left">
+                <h1><a href="index.html"><span>Grocery</span> Store</a></h1>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="special_items">
+                    <li><a href="events.html">Events</a><i>/</i></li>
+                    <li><a href="about.html">About Us</a><i>/</i></li>
+                    <li><a href="products.html">Best Deals</a><i>/</i></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </div>
+            <div class="w3ls_logo_products_left1">
+                <ul class="phone_email">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a
+                            href="mailto:store@grocery.com">store@grocery.com</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
     <!-- //header -->
     <!-- products-breadcrumb -->
     <div class="products-breadcrumb">
         <div class="container">
             <ul>
                 <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
-                <li>Pagamenti</li>
+                <li>Payment</li>
             </ul>
         </div>
     </div>
@@ -227,7 +229,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <div class="w3_agileits_card_number_grid_right">
                                                         <div class="controls">
                                                             <label class="control-label">CVV</label>
-                                                            <input class="security-code form-control" Â·
+                                                            <input class="security-code form-control"Â·
                                                                 inputmode="numeric" type="text"
                                                                 name="security-code" placeholder="&#149;&#149;&#149;">
                                                         </div>
@@ -333,16 +335,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div id="tab4" class="tab-grid" style="display: block;">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img class="pp-img" src="Images/paypal.png" alt="Image Alternative text"
-                                                title="Image Title">
+                                            <img class="pp-img" src={{ 'tema/images/paypal.png' }}
+                                                alt="Image Alternative text" title="Image Title">
                                             <p>Important: You will be redirected to PayPal's website to securely
                                                 complete your payment.</p><a class="btn btn-primary">Checkout via
                                                 Paypal</a>
-                                            {{--                                            @include('front/Paypal') --}}
                                         </div>
                                         <div class="col-md-6">
-                                            <h3>Concludi Ordine</h3>
-                                            {{-- <form class="cc-form">
+                                            <form class="cc-form">
                                                 <div class="clearfix">
                                                     <div class="form-group form-group-cc-number">
                                                         <label>Card Number</label>
@@ -351,7 +351,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                                     <div class="form-group form-group-cc-cvc">
                                                         <label>CVV</label>
-                                                        <input class="form-control" placeholder="xxxx" type="text">
+                                                        <input class="form-control" placeholder="xxxx"
+                                                            type="text">
                                                     </div>
                                                 </div>
                                                 <div class="clearfix">
@@ -361,7 +362,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </div>
                                                     <div class="form-group form-group-cc-date">
                                                         <label>Valid Thru</label>
-                                                        <input class="form-control" placeholder="mm/yy" type="text">
+                                                        <input class="form-control" placeholder="mm/yy"
+                                                            type="text">
                                                     </div>
                                                 </div>
                                                 <div class="checkbox checkbox-small">
@@ -369,9 +371,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         <input class="i-check" type="checkbox" checked="">Add to
                                                         My Cards</label>
                                                 </div>
-                                                <input class="btn btn-primary submit" type="submit"
-                                                    class="submit" value="Proceed Payment">
-                                            </form> --}}
+                                                <input class="btn btn-primary submit" type="submit" class="submit"
+                                                    value="Proceed Payment">
+                                            </form>
                                         </div>
                                     </div>
 
@@ -446,12 +448,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 w3_footer_grid">
                 <h3>twitter posts</h3>
                 <ul class="w3_footer_grid_list1">
-                    <li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam
-                            <a href="#">http://sd.ds/13jklf#</a>
+                    <li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a
+                                href="#">http://sd.ds/13jklf#</a>
                             eius modi tempora incidunt ut labore et
                             <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.</span></li>
-                    <li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam
-                            <a href="#">http://fd.uf/56hfg#</a>
+                    <li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a
+                                href="#">http://fd.uf/56hfg#</a>
                             eius modi tempora incidunt ut labore et
                             <a href="#">http://fd.uf/56hfg#</a>quo nulla.</span></li>
                 </ul>
@@ -461,7 +463,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
                     <div class="w3_footer_grid_bottom">
                         <h4>100% secure payments</h4>
-                        <img src="{{ url('tema/Images/card.png') }}" alt=" " class="img-responsive" />
+                        <img src={{ 'tema/images/card.png' }} alt=" " class="img-responsive" />
                     </div>
                 </div>
                 <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
@@ -491,10 +493,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!-- //footer -->
     <!-- js -->
-    <script src=" {{ url('tema/js/jquery-1.11.1.min.js') }}"></script>
+    <script src={{ 'tema/js/jquery-1.11.1.min.js' }}></script>
     <!-- easy-responsive-tabs -->
-    <link rel="stylesheet" type="text/css" href="{{ url('tema/css/easy-responsive-tabs.css') }} " />
-    <script src="{{ url('tema/js/easyResponsiveTabs.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href={{ 'tema/css/easy-responsive-tabs.css ' }} />
+    <script src={{ 'tema/js/easyResponsiveTabs.js' }}></script>
     <!-- //easy-responsive-tabs -->
     <script type="text/javascript">
         $(document).ready(function() {
@@ -515,27 +517,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- credit-card -->
-    {{-- <script type="text/javascript" src="js/creditly.js"></script>
-        <link rel="stylesheet" href="css/creditly.css" type="text/css" media="all" /> --}}
+    <script type="text/javascript" src={{ 'tema/js/creditly.js' }}></script>
+    <link rel="stylesheet" href={{ 'tema/css/creditly.css' }} type="text/css" media="all" />
 
-    {{-- <script type="text/javascript">
-			$(function() {
-			  var creditly = Creditly.initialize(
-				  '.creditly-wrapper .expiration-month-and-year',
-				  '.creditly-wrapper .credit-card-number',
-				  '.creditly-wrapper .security-code',
-				  '.creditly-wrapper .card-type');
+    <script type="text/javascript">
+        $(function() {
+            var creditly = Creditly.initialize(
+                '.creditly-wrapper .expiration-month-and-year',
+                '.creditly-wrapper .credit-card-number',
+                '.creditly-wrapper .security-code',
+                '.creditly-wrapper .card-type');
 
-			  $(".creditly-card-form .submit").click(function(e) {
-				e.preventDefault();
-				var output = creditly.validate();
-				if (output) {
-				  // Your validated credit card output
-				  console.log(output);
-				}
-			  });
-			});
-		</script> --}}
+            $(".creditly-card-form .submit").click(function(e) {
+                e.preventDefault();
+                var output = creditly.validate();
+                if (output) {
+                    // Your validated credit card output
+                    console.log(output);
+                }
+            });
+        });
+    </script>
     <!-- //credit-card -->
 
     <!-- //js -->
@@ -556,8 +558,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- //script-for sticky-nav -->
     <!-- start-smoth-scrolling -->
-    <script type="text/javascript" src="{{ url('tema/js/move-top.js') }}"></script>
-    <script type="text/javascript" src="{{ url('tema/js/easing.js') }}"></script>
+    <script type="text/javascript" src={{ 'tema/js/move-top.js' }}></script>
+    <script type="text/javascript" src={{ 'tema/js/easing.js' }}></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event) {
@@ -570,7 +572,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <!-- start-smoth-scrolling -->
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ 'tema/js/bootstrap.min.js' }}"></script>
+    <script src={{ 'tema/js/bootstrap.min.js' }}></script>
     <script>
         $(document).ready(function() {
             $(".dropdown").hover(
@@ -604,28 +606,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //here ends scrolling icon -->
-    {{-- <script src="js/minicart.js"></script>
-<script>
-		paypal.minicart.render();
+    <script src={{ 'tema/js/minicart.js' }}></script>
+    <script>
+        paypal.minicart.render();
 
-		paypal.minicart.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+        paypal.minicart.cart.on('checkout', function(evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-
-	</script> --}}
+            if (total < 3) {
+                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+    </script>
 </body>
 
 </html>
