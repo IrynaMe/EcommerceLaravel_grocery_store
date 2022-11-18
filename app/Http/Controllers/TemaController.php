@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Order;
 use Session;
 use App\Cart;
 
@@ -35,7 +36,7 @@ class TemaController extends Controller
 
 //GESTIRE UTENTI----------------------------------------------
 //registra utente
-public function registrati(Request $request)
+    public function registrati(Request $request)
     {
         //istruzioni per la validazione
         $this->validate($request, ['email' => 'email|required',
@@ -122,7 +123,7 @@ public function registrati(Request $request)
         return redirect('/cart')->with('status', 'hai aggiornato i dati');
     }
 
-//PRODOTTI------------------------------------
+    //PRODOTTI------------------------------------
     public function shop()
     {
        // $products= Product::All();
@@ -138,9 +139,9 @@ public function registrati(Request $request)
     return view('front.singolo')->with('product', $product);
     }
 
-        //CART-----------------------------------------
+    //CART-----------------------------------------
 
-        public function cart()
+    public function cart()
         {
             if (!Session::has('cart')) {
                 return view('front.cart');
@@ -152,7 +153,7 @@ public function registrati(Request $request)
             return view('front.cart', ['products' => $cart->items]);
             // return view('front.cart');
         }
-        public function addCart($id)
+    public function addCart($id)
         {
             $product = Product::find($id);
             
@@ -165,7 +166,7 @@ public function registrati(Request $request)
             return back();
         }
     
-        public function update_qty(Request $request, $id)
+    public function update_qty(Request $request, $id)
         {
             $oldCart = Session::has('cart')? Session::get('cart'):null;
             $cart = new Cart($oldCart);
@@ -178,7 +179,7 @@ public function registrati(Request $request)
             return back();
         }
     
-        public function remove($id)
+    public function remove($id)
         {
             $oldCart = Session::has('cart')? Session::get('cart'):null;
             $cart = new Cart($oldCart);
@@ -194,14 +195,14 @@ public function registrati(Request $request)
             return redirect('/cart');
         }
     
-        public function removeItem($id)
+    public function removeItem($id)
             {
                 $this->totalQty -= $this->items[$id]['qty'];
                 $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
                 unset($this->items[$id]);
             }
     
-        public function ProcediOrdine()
+    public function ProcediOrdine()
             {
             $oldCart = Session::has('cart')? Session::get('cart'):null;
             $cart = new Cart($oldCart);

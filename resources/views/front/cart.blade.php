@@ -211,11 +211,13 @@
                         @php
                             // print Session('Order');
                         @endphp
-                        <div class="checkout-right-basket">
-                            <a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
-                                    aria-hidden="true"></span></a>
+                        @if (Session::has('cart'))
+                            <div class="checkout-right-basket">
+                                <a href="/ProcediOrdine">Vai al pagamento <span class="glyphicon glyphicon-chevron-right"
+                                        aria-hidden="true"></span></a>
 
-                        </div>
+                            </div>
+                        @endif
                     @endif
                 @else
                     <div class="col-md-4"></div>

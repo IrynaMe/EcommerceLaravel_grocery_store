@@ -29,7 +29,10 @@ $table->timestamps();
 adesso possimao andare e <a href="/ProcediOrdine"></a>
 Si va attraverso web.php
 Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
-In tema controller alla funzione ProcediOrdine
+In tema controller:
+-  use App\Models\Order;
+-alla funzione ProcediOrdine
+
 
 public function ProcediOrdine()
 {
@@ -49,6 +52,9 @@ $order->save();
 
 return redirect('/pagamenti')->with('status', 'ordine aggiornato');
 }
+
+php artisan migrate --path=database/migrations/2022_11_18_090640_create_orders_table.php
+
 Questa funzione ha il compito di inserire i dati dell' ordine e in particolare
 Nella colonna cart del DB, tutta la sessione cart che contiene i dettagli
 del''ordine
