@@ -12,6 +12,7 @@ use App\Cart;
 
 class TemaController extends Controller
 {
+//FRONT VIEW------------------------------------------
     public function home()
     {
         $products= Product::All()->where('discount', '>', 0);
@@ -26,86 +27,13 @@ class TemaController extends Controller
     {
         return view('front.about');
     }
-
-    //cart
-
-    public function cart()
-    {
-        if (!Session::has('cart')) {
-            return view('front.cart');
-        }
-
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-
-        return view('front.cart', ['products' => $cart->items]);
-        // return view('front.cart');
-    }
-    public function addCart($id)
-    {
-        $product = Product::find($id);
-        
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->add($product, $id);
-        Session::put('cart', $cart);
-
-        //dd(Session::get('cart'));
-        return back();
-    }
-
-    public function update_qty(Request $request, $id)
-    {
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        
-        $cart->updateQty($id, $request->quantity);
-        
-        Session::put('cart', $cart);
-
-        // dd(Session::get('cart'));
-        return back();
-    }
-
-    public function remove($id)
-    {
-        $oldCart = Session::has('cart')? Session::get('cart'):null;
-        $cart = new Cart($oldCart);
-        $cart->removeItem($id);
-       
-        if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
-        } else {
-            Session::forget('cart');
-        }
-
-        //dd(Session::get('cart'));
-        return redirect('/cart');
-    }
-
-    public function removeItem($id)
-        {
-            $this->totalQty -= $this->items[$id]['qty'];
-            $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
-            unset($this->items[$id]);
-        }
-
     public function pagamenti()
     {
         return view('front.pagamenti');
     }
-/*     public function shop()
-    {
-        return view('front.shop');
-    } */
 
-    public function shop()
-    {
-       // $products= Product::All();
-        $products= Product::paginate(8);
-        return view('front.shop')->with('products', $products);
-    }
 
+//GESTIRE UTENTI----------------------------------------------
 //registra utente
 public function registrati(Request $request)
     {
@@ -194,6 +122,14 @@ public function registrati(Request $request)
         return redirect('/cart')->with('status', 'hai aggiornato i dati');
     }
 
+//PRODOTTI------------------------------------
+    public function shop()
+    {
+       // $products= Product::All();
+        $products= Product::paginate(8);
+        return view('front.shop')->with('products', $products);
+    }
+
     //single product
     public function singolo($id)
     {
@@ -201,5 +137,87 @@ public function registrati(Request $request)
 
     return view('front.singolo')->with('product', $product);
     }
+
+        //CART-----------------------------------------
+
+        public function cart()
+        {
+            if (!Session::has('cart')) {
+                return view('front.cart');
+            }
     
+            $oldCart = Session::has('cart')? Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+    
+            return view('front.cart', ['products' => $cart->items]);
+            // return view('front.cart');
+        }
+        public function addCart($id)
+        {
+            $product = Product::find($id);
+            
+            $oldCart = Session::has('cart')? Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            $cart->add($product, $id);
+            Session::put('cart', $cart);
+    
+            //dd(Session::get('cart'));
+            return back();
+        }
+    
+        public function update_qty(Request $request, $id)
+        {
+            $oldCart = Session::has('cart')? Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            
+            $cart->updateQty($id, $request->quantity);
+            
+            Session::put('cart', $cart);
+    
+            // dd(Session::get('cart'));
+            return back();
+        }
+    
+        public function remove($id)
+        {
+            $oldCart = Session::has('cart')? Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            $cart->removeItem($id);
+           
+            if (count($cart->items) > 0) {
+                Session::put('cart', $cart);
+            } else {
+                Session::forget('cart');
+            }
+    
+            //dd(Session::get('cart'));
+            return redirect('/cart');
+        }
+    
+        public function removeItem($id)
+            {
+                $this->totalQty -= $this->items[$id]['qty'];
+                $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
+                unset($this->items[$id]);
+            }
+    
+        public function ProcediOrdine()
+            {
+            $oldCart = Session::has('cart')? Session::get('cart'):null;
+            $cart = new Cart($oldCart);
+            $order= new Order;
+            $order->Customer_id= (Session('Customer')->id);
+            $order->nome= (Session('Customer')->email);
+            $order->indirizzo= (Session('Aggiorna')->indirizzo);
+            $order->nome= (Session('Customer')->email);
+            $order->citta= (Session('Aggiorna')->citta);
+            $order->cart = serialize($cart);
+            $order->prezzo= (Session('cart')->totalPrice);
+            $order->stato = 1;
+            Session::put('Order', $order);
+            $order->save();
+            
+            return redirect('/pagamenti')->with('status', 'ordine aggiornato');
+            }
+      
 }
