@@ -40,29 +40,20 @@
                             <td scope="col">{{ $order->indirizzo }}</td>
                             <td scope="col">{{ $order->citta }}</td>
                             <td scope="col">{{ $order->nome }}</td>
-                            <?php
-                            
-                            $details = unserialize($order->cart);
-                            //echo ' <pre>';
-                            //echo print_r($details);
-                            //echo '</pre>';
-                            
-                            $prezzo = $details->totalPrice;
-                            
-                            ?>
                             <td scope="col">
-                                <p> prezzo: {{ $prezzo }}</p>
-
+                                <a href="#">
+                                    <i class="fas fa-info"></i>
+                                </a>
                             </td>
-                            {{-- modifica --}}
+
                             <td scope="col">
-                                <a href="/editCustomer/{{ $order->id }}">
+                                <a href="#">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>
-                            {{-- cancella --}}
+
                             <td scope="col">
-                                <a href="/delete/{{ $order->id }}">
+                                <a href="#">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>

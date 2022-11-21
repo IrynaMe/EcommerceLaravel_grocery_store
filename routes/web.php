@@ -37,6 +37,8 @@ Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
+//logout Admin
+Route::any('/logout', [AdminController::class, 'logout']);
 
 
 //gestire UTENTI--------------------

@@ -19,16 +19,9 @@ class AdminController extends Controller
     {
         return view('amministrazione.home');
     }
-    public function dashboard()
-    {
-        return view('amministrazione.dashboard');
-    }
 
-    public function creaProdotti()
-    {
-        return view('amministrazione.creaProdotti');
-    }
 
+    // -----------------------------GESTIRE UTENTI---------------------------------------
     public function listaUtenti()
     {
         // return view('amministrazione.listaUtenti');
@@ -39,10 +32,6 @@ class AdminController extends Controller
         $customers = Customer::paginate(4);
         //ritorna la vista aggiungendo il risultato della query $customer
         return view('amministrazione.listaUtenti')->with('customers', $customers);
-    }
-    public function ordini()
-    {
-        return view('amministrazione.ordini');
     }
 
     public function creaUtenti()
@@ -107,29 +96,16 @@ class AdminController extends Controller
         Session::put('success', 'Utente Cancellato');
         return redirect('/listaUtenti');
     }
-
-    public function loginAmmre(Request $request)
+    // -----------------------------GESTIRE ORDINI--------------------------------------
+    public function ordini()
     {
-        $this->validate($request, ['email' => 'email|required',
-                                   'password' => 'required' ]);
+        return view('amministrazione.ordini');
+    }
 
-        $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
-        if ($Amministratore) {
-            $password=md5($request->input('password'));
-            //echo $password."<br>";
-            $passwordDB= ($Amministratore->password);
-            //echo $passwordDB;
-            if ($password == $passwordDB) {
-                Session::put('amministratore', $Amministratore);
-               // Session::put('admin', $Amministratore);
-                // echo 'passo da qui';
-                return redirect('/dashboard')->with('amminisratore', 'Welcome, Admin!');            
-            } else {
-                return back()->with('status', 'Email o password non corretta');
-            }
-        } else {
-            return back()->with('status', 'Non hai un account con questa email');
-        }
+
+    public function creaProdotti()
+    {
+        return view('amministrazione.creaProdotti');
     }
 
     public function salvaProdotto(Request $request)
@@ -242,16 +218,54 @@ class AdminController extends Controller
 
     public function listaOrdini()
     {
-        // return view('amministrazione.listaUtenti');
-
-        //torna il risiultato della query organizzato per pagina
-        //1 = un record per ogni pagination
-        //equivale PHP a
         $orders = Order::paginate(4);
-        //ritorna la vista aggiungendo il risultato della query $customer
         return view('amministrazione.ordini')->with('orders', $orders);
     }
 
+    
+    // -----------------------------GESTIRE ADMIN--------------------------------------
+    public function dashboard()
+    {
+        return view('amministrazione.dashboard');
+    }
+    
+    public function loginAmmre(Request $request)
+    {
+        $this->validate($request, ['email' => 'email|required',
+                                   'password' => 'required' ]);
+
+        $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
+        if ($Amministratore) {
+            $password=md5($request->input('password'));
+            //echo $password."<br>";
+            $passwordDB= ($Amministratore->password);
+            //echo $passwordDB;
+            if ($password == $passwordDB) {
+                Session::put('amministratore', $Amministratore);
+               // Session::put('admin', $Amministratore);
+                // echo 'passo da qui';
+                return redirect('/dashboard')->with('amminisratore', 'Welcome, Admin!');            
+            } else {
+                return back()->with('status', 'Email o password non corretta');
+            }
+        } else {
+            return back()->with('status', 'Non hai un account con questa email');
+        }
+    }
+
+        //logout Admin
+   
+        public function logout()
+        {
+            Session::forget('amministratore');
+            /* if (Session::has('amministratore')){
+                Session::forget('amministratore');
+            } */
+    
+            return redirect('/');
+        }
+
+    
 
 
 }

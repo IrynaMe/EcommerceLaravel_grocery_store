@@ -15,17 +15,19 @@ sans-serif;font-size:25px;width:80%;margin-bottom:5px;color:#124b61">
     </a>
 
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/creaUtenti">Crea Utenti</a>
-
+    <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/creaProdotti">Crea Prodotti</a>
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/listaUtenti">
         Utenti
     </a>
-
-    <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/creaProdotti">Crea Prodotti</a>
 
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/listaProdotti">
         Prodotti
     </a>
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/ordini">
         Ordini
+    </a>
+    <a class="nav-link nav-pills bck " id="v-pills-profile-tab" href="/logout"
+        style="background-color:rgb(217, 152, 126);">
+        Esci
     </a>
 </div>

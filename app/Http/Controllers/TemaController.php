@@ -34,7 +34,7 @@ class TemaController extends Controller
     }
 
 
-//GESTIRE UTENTI----------------------------------------------
+//----------------------------GESTIRE UTENTI----------------------------------------------
 //registra utente
     public function registrati(Request $request)
     {
@@ -92,7 +92,7 @@ class TemaController extends Controller
     }
 
 
-    //logout utente
+    //Logout Utente
    
     public function logout()
     {
@@ -123,7 +123,7 @@ class TemaController extends Controller
         return redirect('/cart')->with('status', 'hai aggiornato i dati');
     }
 
-    //PRODOTTI------------------------------------
+    //------------------------------------------PRODOTTI------------------------------------
     public function shop()
     {
        // $products= Product::All();
@@ -139,7 +139,7 @@ class TemaController extends Controller
     return view('front.singolo')->with('product', $product);
     }
 
-    //CART-----------------------------------------
+    //----------------------------------------------CART-----------------------------------------
 
     public function cart()
         {
