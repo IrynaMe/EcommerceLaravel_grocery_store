@@ -35,8 +35,8 @@ Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
 Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
-Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
-Route::any('/logout', [AdminController::class, 'logout']);
+Route::any('/listaUtenti', [AdminController::class, 'listaUtenti']);
+Route::any('/logoutAdmin', [AdminController::class, 'logoutAdmin']);
 
 
 //------------------------------------------gestire UTENTI--------------------

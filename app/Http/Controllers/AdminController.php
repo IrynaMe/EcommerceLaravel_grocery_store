@@ -23,29 +23,33 @@ class AdminController extends Controller
     // -----------------------------GESTIRE UTENTI---------------------------------------
     public function listaUtenti()
     {
-        // return view('amministrazione.listaUtenti');
-
-        //torna il risiultato della query organizzato per pagina
-        //1 = un record per ogni pagination
-        //equivale PHP a
-        $customers = Customer::paginate(4);
-        //ritorna la vista aggiungendo il risultato della query $customer
-        return view('amministrazione.listaUtenti')->with('customers', $customers);
+        if (Session::has('amministratore')){
+            $customers = Customer::paginate(4);
+            return view('amministrazione.listaUtenti')->with('customers', $customers);
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+        
     }
 
     public function creaUtenti()
-    {
-        return view('amministrazione.creaUtenti');
+    { 
+        if (Session::has('amministratore')){
+            return view('amministrazione.creaUtenti');
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+        
     }
 
     public function editCustomer($id)
     {
-        //trovare tutte le info (email e id) del record che ha id =$id (quello che ho passato)
-        //ritorna queste info a una pagina che si chiama amministrazione/editCustomer.blade.php
-        //In amministrazione.editCustomer ci sarà il campo di di input
-
-        $customer = Customer::find($id);
-        return view('amministrazione.editCustomer')->with('customer', $customer);
+        if (Session::has('amministratore')){
+            $customer = Customer::find($id);
+            return view('amministrazione.editCustomer')->with('customer', $customer);
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
     }
 
     public function aggiornaCustomer(Request $request)
@@ -100,7 +104,12 @@ class AdminController extends Controller
 
     public function creaProdotti()
     {
-        return view('amministrazione.creaProdotti');
+        if (Session::has('amministratore')){
+            return view('amministrazione.creaProdotti');
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+        
     }
 
     public function salvaProdotto(Request $request)
@@ -150,24 +159,24 @@ class AdminController extends Controller
 
     public function listaProdotti()
     {
-        // return view('amministrazione.listaProdotti');
-
-        //torna il risiultato della query organizzato per pagina
-        //1 = un record per ogni pagination
-        //equivale PHP a
-        $products = Product::paginate(10);
-        //ritorna la vista aggiungendo il risultato della query $customer
-        return view('amministrazione.listaProdotti')->with('products', $products );
+        if (Session::has('amministratore')){
+            $products = Product::paginate(10);
+            return view('amministrazione.listaProdotti')->with('products', $products );
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+       
     }
   
     public function editProduct($id)
     {
-        //trovare tutte le info (email e id) del record che ha id =$id (quello che ho passato)
-        //ritorna queste info a una pagina che si chiama amministrazione/editCustomer.blade.php
-        //In amministrazione.editProduct ci sarà il campo di di input
-
-        $product = Product::find($id);
-        return view('amministrazione.editProduct')->with('product', $product);
+        if (Session::has('amministratore')){
+            $product = Product::find($id);
+            return view('amministrazione.editProduct')->with('product', $product);
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+        
     }
 
     public function aggiornaProduct(Request $request)
@@ -201,23 +210,33 @@ class AdminController extends Controller
     }
 // -----------------------------GESTIRE ordini-------------------------
     public function listaOrdini()
-    {
+    {  if (Session::has('amministratore')){
         $orders = Order::paginate(3);
         //trasformo info da seriale json ad un array, 
         //su cui posso applicare foreach
         //dove $key=unserialize($order->cart)
         $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
-
             return $order;
         });
         return view('amministrazione.ordini')->with('orders', $orders);
+    } else {
+        return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
     }
+        
+    }
+       
+    
     
     // -----------------------------GESTIRE ADMIN-------------------------
     public function dashboard()
-    {
-        return view('amministrazione.dashboard');
+    {   
+        if (Session::has('amministratore')){
+            return view('amministrazione.dashboard');
+        } else {
+            return redirect('/admin')->with('status', 'Devi fare login come Admin!');  
+        }
+        
     }
     
     public function loginAmmre(Request $request)
@@ -226,6 +245,7 @@ class AdminController extends Controller
                                    'password' => 'required' ]);
 
         $Amministratore  = Amministratore::where('email', $request->input('email'))->first();
+        
         if ($Amministratore) {
             $password=md5($request->input('password'));
             //echo $password."<br>";
@@ -233,9 +253,8 @@ class AdminController extends Controller
             //echo $passwordDB;
             if ($password == $passwordDB) {
                 Session::put('amministratore', $Amministratore);
-                // Session::put('admin', $Amministratore);
                 // echo 'passo da qui';
-                return redirect('/dashboard')->with('amminisratore', 'Welcome, Admin!');            
+                return redirect('/dashboard')->with('status', 'Welcome, Admin!');            
             } else {
                 return back()->with('status', 'Email o password non corretta');
             }
@@ -245,7 +264,7 @@ class AdminController extends Controller
     }
 
     //logout Admin
-    public function logout()
+    public function logoutAdmin()
         {
             Session::forget('amministratore');
             return redirect('/');

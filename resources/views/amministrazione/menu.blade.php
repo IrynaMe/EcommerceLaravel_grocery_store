@@ -26,7 +26,7 @@ sans-serif;font-size:25px;width:80%;margin-bottom:5px;color:#124b61">
     <a class="nav-link nav-pills bck" id="v-pills-profile-tab" href="/ordini">
         Ordini
     </a>
-    <a class="nav-link nav-pills bck " id="v-pills-profile-tab" href="/logout"
+    <a class="nav-link nav-pills bck " id="v-pills-profile-tab" href="/logoutAdmin"
         style="background-color:rgb(217, 152, 126);">
         Esci
     </a>
