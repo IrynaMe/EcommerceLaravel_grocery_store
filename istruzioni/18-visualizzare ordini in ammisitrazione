@@ -1,0 +1,149 @@
+adesso lavoriamo in amministrazione.ordini.blade
+per vedere i dettagli dell'ordine 
+Si arrva a questa pagina cliccando nel menu di amministrazione
+Richiamata in web 
+Route::get('/ordini', [AdminController::class, 'ordini']);
+In AdminController, unserializiamo:  $order->cart = unserialize($order->cart);
+
+   public function ordini()
+    {
+        $orders = Order::paginate(3);
+        //trasformo info da seriale json ad un array, 
+        //su cui posso applicare foreach
+        //dove $key=unserialize($order->cart)
+        $orders->transform(function ($order, $key) {
+            $order->cart = unserialize($order->cart);
+
+            return $order;
+        });
+        return view('amministrazione.ordini')->with('orders', $orders);
+    }
+    
+    funzione transform in laravel 
+    https://laravel.com/docs/9.x/collections#method-transform
+    
+    unserialize 
+    https://www.w3schools.com/php/phptryit.asp?filename=tryphp_func_var_unserialize
+    
+Per visulizzare ordine e con un modale bootstrap il dettaglio 
+Ordini.blade.php, contiene tutti i campi memorizzati nel DB per ogni sigolo ordine
+@foreach ($orders as $order)
+    @php
+        $creato = $order->created_at;
+        $timestamp = strtotime($creato);
+        $creato = date('d-m-Y', $timestamp);
+    @endphp
+    
+    <tr class="text-center">
+    <td scope="col">{{ $order->id }}</td>
+    <td scope="col">{{ $creato }}</td>
+    <td scope="col">{{ $order->prezzo }}</td>
+    <td scope="col">{{ $order->stato }}</td>
+    <td scope="col">{{ $order->indirizzo }}</td>
+    <td scope="col">{{ $order->citta }}</td>
+    <td scope="col">{{ $order->nome }}</td>
+    {{-- bottone per richiamare modale  --}}
+    <td scope="col">
+    
+        <i class="fas fa-info-circle " data-bs-toggle="modal"
+            data-bs-target="{{ '#ordine_' . $order->id }}">
+        </i>
+    
+    
+    </td>
+    <td scope="col"> <i class="fas fa-edit"></i>
+    </td>
+    <td scope="col"> <i class="fas fa-trash-alt"></i></td>
+    </tr>
+
+...........................................................................................
+Dentro il primo @foreach ($orders as $order) è stato inserito un bottone 
+
+{{-- bottone per richiamare modale  --}}
+<td scope="col">
+<i class="fas fa-info-circle " data-bs-toggle="modal" data-bs-target="{{ '#ordine_' . $order->id }}">
+</i>
+</td>
+Che richiama un modale di bootstrap e dentro il quale il mio obiettivo è quello di mostrare il dettaglio di ogni ordine
+Attraverso un secondo modale innestato nel primo
+
+Ecco il codice:
+
+{{-- mostro i dettagli dell'ordine --}}
+
+
+@foreach ($order->cart->items as $item)
+    <div class="row">
+    <div class="col-md-3">
+    <img src="{{ url('tema/' . $item['product_image']) }}"
+        alt="" style="width:30px;height:30px">
+    </div>
+    <div class="col-md-3">{{ $item['product_price'] }}</div>
+    <div class="col-md-3">{{ $item['product_name'] }}</div>
+    <div class="col-md-3" style="text-align:center">
+        {{ $item['qty'] }}</div>
+    
+    </div>
+    <br>
+    <hr>
+@endforeach
+
+
+complete vession of MODAL
+{{-- modale --}}
+                        <div class="modal fade" id="{{ 'ordine_' . $order->id }}" tabindex="-1"
+                            aria-labelledby="{{ 'ordine_' . $order->id }}Label" aria-hidden="true">
+
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Dettaglio ordine</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    {{-- modal body --}}
+                                    <div class="modal-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-md-3"><b>Immagine</b></div>
+                                                <div class="col-md-3"><b>Prezzo €</b></div>
+                                                <div class="col-md-3"><b>Nome</b></div>
+                                                <div class="col-md-3"><b>Quantita'</b></div>
+                                                <hr>
+                                            </div>
+                                            {{-- mostro i dettagli dell'ordine --}}
+                                            @foreach ($order->cart->items as $item)
+                                                <div class="row">
+
+                                                    <div class="col-md-3">
+                                                        <img src="{{ url('tema/' . $item['product_image']) }}"
+                                                            alt="" style="width:30px;height:30px">
+                                                    </div>
+                                                    <div class="col-md-3">{{ $item['product_price'] }}</div>
+                                                    <div class="col-md-3">{{ $item['product_name'] }}</div>
+                                                    <div class="col-md-3" style="text-align:center">
+                                                        {{ $item['qty'] }}</div>
+
+                                                </div>
+                                                <br>
+                                                <hr>
+                                            @endforeach
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <?php
+                                    
+                                    ?>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {{-- fine modale --}}

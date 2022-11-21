@@ -20,7 +20,6 @@ class AdminController extends Controller
         return view('amministrazione.home');
     }
 
-
     // -----------------------------GESTIRE UTENTI---------------------------------------
     public function listaUtenti()
     {
@@ -82,16 +81,13 @@ class AdminController extends Controller
         $customer->save();
 
         Session::put('success', 'Utente creato');
-
         return redirect('/creaUtenti');
-
         // return view('amministrazione.salvaUtenti');
     }
 
     public function delete($id)
     {
         $customer = Customer::find($id);
-
         $customer->delete();
         Session::put('success', 'Utente Cancellato');
         return redirect('/listaUtenti');
@@ -101,7 +97,6 @@ class AdminController extends Controller
     {
         return view('amministrazione.ordini');
     }
-
 
     public function creaProdotti()
     {
@@ -153,7 +148,6 @@ class AdminController extends Controller
 
     }
 
-    
     public function listaProdotti()
     {
         // return view('amministrazione.listaProdotti');
@@ -165,8 +159,7 @@ class AdminController extends Controller
         //ritorna la vista aggiungendo il risultato della query $customer
         return view('amministrazione.listaProdotti')->with('products', $products );
     }
-
-    
+  
     public function editProduct($id)
     {
         //trovare tutte le info (email e id) del record che ha id =$id (quello che ho passato)
@@ -188,42 +181,40 @@ class AdminController extends Controller
         $product = Product::find($request->input('id'));
         $product->name=$request->input('nomeUpdate');
         $product->description=$request->input('descUpdate');
-
-
         //esegue update nel BD
         $product->update();
-
         // mette in una sessione chiamata success il valore utente aggiornato
         // questo valore viene visualizzato in listaUtenti
         //NB usare use Session;
-
         Session::put('success', 'Prodotto aggiornato');
-
         //ritorna alla lista utenti dove viene eseguita la query
         //con i dati aqggiornati
         return redirect('/listaProdotti');
     }
 
-
-
-
     public function deleteProduct($id)
     {
         $Product =  Product::find($id);
-
         $Product->delete();
         Session::put('success', 'Prodotto Cancellato');
         return redirect('/listaProdotti');
     }
-
+// -----------------------------GESTIRE ordini-------------------------
     public function listaOrdini()
     {
-        $orders = Order::paginate(4);
+        $orders = Order::paginate(3);
+        //trasformo info da seriale json ad un array, 
+        //su cui posso applicare foreach
+        //dove $key=unserialize($order->cart)
+        $orders->transform(function ($order, $key) {
+            $order->cart = unserialize($order->cart);
+
+            return $order;
+        });
         return view('amministrazione.ordini')->with('orders', $orders);
     }
-
     
-    // -----------------------------GESTIRE ADMIN--------------------------------------
+    // -----------------------------GESTIRE ADMIN-------------------------
     public function dashboard()
     {
         return view('amministrazione.dashboard');
@@ -242,7 +233,7 @@ class AdminController extends Controller
             //echo $passwordDB;
             if ($password == $passwordDB) {
                 Session::put('amministratore', $Amministratore);
-               // Session::put('admin', $Amministratore);
+                // Session::put('admin', $Amministratore);
                 // echo 'passo da qui';
                 return redirect('/dashboard')->with('amminisratore', 'Welcome, Admin!');            
             } else {
@@ -253,19 +244,13 @@ class AdminController extends Controller
         }
     }
 
-        //logout Admin
-   
-        public function logout()
+    //logout Admin
+    public function logout()
         {
             Session::forget('amministratore');
-            /* if (Session::has('amministratore')){
-                Session::forget('amministratore');
-            } */
-    
             return redirect('/');
         }
 
     
-
 
 }

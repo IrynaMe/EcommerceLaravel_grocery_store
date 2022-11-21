@@ -20,32 +20,31 @@ use App\Http\Controllers\AdminController;
 });
  */
 
-// area FRONT----------------------
+// ---------------------------------------area FRONT----------------------
 Route::get('/', [TemaController::class, 'home']);
 Route::get('/mail', [TemaController::class, 'mail']);
 Route::get('/about', [TemaController::class, 'about']);
 Route::any('/cart', [TemaController::class, 'cart']);
 Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
-Route::any('/login', [TemaController::class, 'login']);
 
 
-//area AMMINISTRAZIONE--------------------
+//----------------------------------area AMMINISTRAZIONE--------------------
 Route::any('/admin', [AdminController::class, 'home']);
 Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
 Route::any('/dashboard', [AdminController::class, 'dashboard']);
 Route::any('/creaProdotti', [AdminController::class, 'creaProdotti']);
 Route::any('/creaUtenti', [AdminController::class, 'creaUtenti']);
 Route::get('/listaUtenti', [AdminController::class, 'listaUtenti']);
-//logout Admin
 Route::any('/logout', [AdminController::class, 'logout']);
 
 
-//gestire UTENTI--------------------
+//------------------------------------------gestire UTENTI--------------------
 
 //registra utente
 Route::any('/registrati', [TemaController::class, 'registrati']);
 //login utente
+Route::any('/login', [TemaController::class, 'login']);
 Route::any('/accesso', [TemaController::class, 'accesso']);
 //logout utente
 Route::any('/logout', [TemaController::class, 'logout']);
@@ -59,12 +58,13 @@ Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
 
 //delete user
 Route::any('/delete/{id}', [AdminController::class, 'delete']);
-//create a new product
-Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
 
-//gestire PRODOTTI------------------
+
+//------------------------------------------gestire PRODOTTI------------------
 //lista prodotti
 Route::get('/listaProdotti', [AdminController::class, 'listaProdotti']);
+//create a new product
+Route::any('/salvaProdotto', [AdminController::class, 'salvaProdotto']);
 
 //modifica prodotto
 Route::any('/editProduct/{id}', [AdminController::class, 'editProduct']);
@@ -77,12 +77,13 @@ Route::any('/deleteProduct/{id}', [AdminController::class, 'deleteProduct']);
 Route::any('/single/{id}', [TemaController::class, 'singolo']);
 
 
-//Gestire CART---------------------
+//----------------------------------------Gestire CART---------------------
 Route::any('/addcart/{id}', [TemaController::class, 'addCart']);
 Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 Route::any('/remove/{id}', [TemaController::class, 'remove']);
 Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
 
-//Gestire ORDINI
+//--------------------------Gestire ORDINI---------------------------------------
 //Route::get('/ordini', [AdminController::class, 'ordini']);
 Route::any('/ordini', [AdminController::class, 'listaOrdini']);
+
