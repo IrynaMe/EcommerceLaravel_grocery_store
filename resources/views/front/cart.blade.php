@@ -106,7 +106,7 @@
                             <th class="text-center">Nome </th>
                             <th>Quantità</th>
 
-                            <th>Valore Totale</th>
+                            <th>Prezzo</th>
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product['product_name'] }}</td>
@@ -137,18 +137,26 @@
 
                                 <span>{{ Session::has('cart') ? Session::get('cart')->totalPrice : null }}</span>
                             </tr> --}}
-
-                            <tr>
+                            <tr style="border:1px solid grey;">
                                 <td>
-                                    <span class="total">Prezzo Totale </span>
+                                    <span class="total">Valore Totale </span>
                                 </td>
-                                <td></td>
+
                                 <td>
                                     <span class="total">
+                                        {{ Session::get('cart')->totalQty }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="total" style="color: red;">
                                         {{ Session::get('cart')->totalPrice }}
                                     </span>
                                 </td>
+
+
                             </tr>
+
+
                         </table>
                     @endif
                 </ul>

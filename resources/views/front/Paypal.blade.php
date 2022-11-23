@@ -5,7 +5,7 @@
     {{-- dove value = "XR7VVKVHE72VQ" e collegato con il mio account ID paypal business --}}
     <input type="hidden" name="hosted_button_id" value="XR7VVKVHE72VQ">
     <input type="hidden" name="business" value="irinam7a@gmail.com">
-    <input type="hidden" name="quantity" value="1">
+    <input type="hidden" name="quantity" value="{{ Session('cart')->totalQty }}">
     <input type="hidden" name="amount" value="{{ Session('cart')->totalPrice }}">
     <input type="hidden" name="email" value="{{ Session('Customer')->email }}">
     <input type="hidden" name="address1" value="{{ Session('Aggiorna')->indirizzo }}">
