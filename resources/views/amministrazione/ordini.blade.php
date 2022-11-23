@@ -47,20 +47,19 @@
                             <td scope="col">{{ $order->nome }}</td>
 
                             <td>
-
                                 <i class="fas fa-info-circle " data-bs-toggle="modal"
                                     data-bs-target="{{ '#ordine_' . $order->id }}">
                                 </i>
                             </td>
 
                             <td scope="col">
-                                <a href="#" style="text-decoration: none;">
+                                <a href="#" style="color:black;">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>
 
                             <td scope="col">
-                                <a href="#" style="text-decoration: none;">
+                                <a href="#" style="color:black;">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
@@ -186,3 +185,8 @@
     </div>
 </div>
 @include('amministrazione/footer')
+<style>
+    .fas:hover {
+        color: rgb(6, 84, 209);
+    }
+</style>

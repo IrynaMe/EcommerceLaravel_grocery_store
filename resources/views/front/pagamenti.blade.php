@@ -333,12 +333,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div id="tab4" class="tab-grid" style="display: block;">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <img class="pp-img" src="Images/paypal.png" alt="Image Alternative text"
-                                                title="Image Title">
+                                            {{--                                             <img class="pp-img" src="Images/paypal.png" alt="Image Alternative text"
+                                                title="Image Title"> --}}
                                             <p>Important: You will be redirected to PayPal's website to securely
-                                                complete your payment.</p><a class="btn btn-primary">Checkout via
-                                                Paypal</a>
-                                            {{--                                            @include('front/Paypal') --}}
+                                                complete your payment.</p>
+                                            {{--                                                 <a class="btn btn-primary">Checkout via
+                                                Paypal</a> --}}
+                                            @include('front/Paypal')
                                         </div>
                                         <div class="col-md-6">
                                             <h3>Concludi Ordine</h3>

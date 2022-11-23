@@ -20,7 +20,7 @@ use App\Http\Controllers\AdminController;
 });
  */
 
-// ---------------------------------------area FRONT----------------------
+// ---------------------------------area FRONT----------------------
 Route::get('/', [TemaController::class, 'home']);
 Route::get('/mail', [TemaController::class, 'mail']);
 Route::get('/about', [TemaController::class, 'about']);
@@ -29,7 +29,7 @@ Route::get('/pagamenti', [TemaController::class, 'pagamenti']);
 Route::get('/shop', [TemaController::class, 'shop']);
 
 
-//----------------------------------area AMMINISTRAZIONE--------------------
+//------------------------------area AMMINISTRAZIONE--------------------
 Route::any('/admin', [AdminController::class, 'home']);
 Route::any('/loginAmmre', [AdminController::class, 'loginAmmre']);
 Route::any('/dashboard', [AdminController::class, 'dashboard']);
@@ -60,7 +60,7 @@ Route::any('/salvaUtenti', [AdminController::class, 'salvaUtenti']);
 Route::any('/delete/{id}', [AdminController::class, 'delete']);
 
 
-//------------------------------------------gestire PRODOTTI------------------
+//-------------------------------------gestire PRODOTTI------------------
 //lista prodotti
 Route::get('/listaProdotti', [AdminController::class, 'listaProdotti']);
 //create a new product
@@ -83,7 +83,8 @@ Route::post('/update_qty/{id}', [TemaController::class, 'update_qty']);
 Route::any('/remove/{id}', [TemaController::class, 'remove']);
 Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
 
-//--------------------------Gestire ORDINI---------------------------------------
+//--------------------------Gestire ORDINI e PAGAMENTI--------------------------
 //Route::get('/ordini', [AdminController::class, 'ordini']);
 Route::any('/ordini', [AdminController::class, 'listaOrdini']);
-
+//--------------------------Gestire PAGAMENTI------------------------
+Route::any('/grazie', [TemaController::class, 'grazie']);

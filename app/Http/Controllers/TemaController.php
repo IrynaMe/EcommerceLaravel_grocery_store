@@ -196,14 +196,14 @@ class TemaController extends Controller
         }
     
     public function removeItem($id)
-            {
-                $this->totalQty -= $this->items[$id]['qty'];
-                $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
-                unset($this->items[$id]);
-            }
+        {
+            $this->totalQty -= $this->items[$id]['qty'];
+            $this->totalPrice -= $this->items[$id]['product_price'] * $this->items[$id]['qty'];
+            unset($this->items[$id]);
+        }
     
     public function ProcediOrdine()
-            {
+        {
             $oldCart = Session::has('cart')? Session::get('cart'):null;
             $cart = new Cart($oldCart);
             $order= new Order;
@@ -220,6 +220,23 @@ class TemaController extends Controller
             $order->save();
             
             return redirect('/pagamenti')->with('status', 'ordine aggiornato');
+        }
+
+        public function grazie()
+        {
+            if (Session::has('Order')) {
+                $id=(Session('Order')->id);
+                $order= Order::find($id);
+                $order->stato = 2;
+                $order->save();
+          
+                Session::forget('cart');
+                Session::forget('Aggiorna');
+/*                 Session::forget('Customer');
+                Session::flush(); */
             }
+            return view('front.grazie');
+        }
+          
       
 }

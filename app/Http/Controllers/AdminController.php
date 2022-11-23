@@ -20,7 +20,7 @@ class AdminController extends Controller
         return view('amministrazione.home');
     }
 
-    // -----------------------------GESTIRE UTENTI---------------------------------------
+    // -----------------------------GESTIRE UTENTI--------------------------------
     public function listaUtenti()
     {
         if (Session::has('amministratore')){
@@ -96,7 +96,7 @@ class AdminController extends Controller
         Session::put('success', 'Utente Cancellato');
         return redirect('/listaUtenti');
     }
-    // -----------------------------GESTIRE ORDINI--------------------------------------
+    // -----------------------------GESTIRE ORDINI----------------------------------
     public function ordini()
     {
         return view('amministrazione.ordini');
@@ -211,7 +211,7 @@ class AdminController extends Controller
 // -----------------------------GESTIRE ordini-------------------------
     public function listaOrdini()
     {  if (Session::has('amministratore')){
-        $orders = Order::paginate(3);
+        $orders = Order::paginate(5);
         //trasformo info da seriale json ad un array, 
         //su cui posso applicare foreach
         //dove $key=unserialize($order->cart)

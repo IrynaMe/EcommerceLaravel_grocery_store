@@ -1,0 +1,48 @@
+Ho creato nella cartella front
+-Grazie.blade.php: la pagina dove tornare una volta pagato
+-Paypal.blade.php: la pagina dove ho messo il form sandbox di Paypal
+(vedi documentazione corso PHP)
+la pagina contiene gli input hidden:
+<input type="hidden" name="amount" value="{{ Session('cart')->totalPrice }}">
+<input type="hidden" name="email" value="{{ Session('Customer')->email }}">
+<input type="hidden" name="address1" value="">
+<input type="hidden" name="city" value="{{ Session('Aggiorna')->indirizzo }}">
+<input type="hidden" name="country" value="IT">
+<input type="hidden" name="currency_code" value="EUR">
+<input type="hidden" name="return" value="http://127.0.0.1:8000/grazie">
+
+
+In pagamenti. blade.php
+<div id="tab4" class="tab-grid" style="display: block;">
+  <div class="row">
+    <div class="col-md-6">
+      ......
+      @include('front/Paypal')
+    </div>
+  </div>
+  </div>
+
+  la pagina grazie a cui si torna doponil pagamento con Paypal deve
+  -aggiornare lo stato da 1 a 2
+  -svuotare il carrello e le altre sessioni
+  Quindi
+
+  Route::any('/grazie', [TemaController::class, 'grazie']);
+
+  public function grazie()
+  {
+  //eseguo solo se la sessione non è stata cancellata
+  if (Session::has('Order')) {
+  $id=(Session('Order')->id);
+  $order= Order::find($id);
+  // $order= Order::All()->where('Customer_id', (Session('Customer')->id));
+  $order->stato = 2;
+  $order->save();
+
+  Session::forget('cart');
+  Session::forget('Aggiorna');
+  Session::forget('Customer');
+  Session::flush();
+  }
+  return view('front.grazie');
+  }
