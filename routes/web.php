@@ -88,3 +88,6 @@ Route::any('/ProcediOrdine', [TemaController::class, 'ProcediOrdine']);
 Route::any('/ordini', [AdminController::class, 'listaOrdini']);
 //--------------------------Gestire PAGAMENTI------------------------
 Route::any('/grazie', [TemaController::class, 'grazie']);
+//---------------------------------MAIL------------------
+Route::any('/contatti', [TemaController::class, 'contatti']);
+// Route::any('/dynamic_email_template.blade', [TemaController::class, 'dynamic_email_template.blade']);

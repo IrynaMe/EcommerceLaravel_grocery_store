@@ -1,0 +1,178 @@
+https://www.codegrepper.com/code-examples/whatever/stream_socket_enable_crypto%28%29%3A+SSL+operation+failed+with+code+1.+OpenSSL+Error+messages%3A%5Cnerror%3A1416F086%3ASSL+routines%3Atls_process_server_certificate%3Acertificate+verify+failed
+
+MANDARE EMAIL CON LARAVEL
+
+1 step 
+Settaggio .env(nella rote principale )
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=notizie.lb@gmail.com
+MAIL_PASSWORD=...(here pasw for email account)...
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=notizie.lb@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+------------------------------------------------------
+
+2 step 
+creare una cartella app/Mail che comprende il sendEmail.php a terminale 
+
+php artisan make:mail SendMail
+------------------------------------------------------
+
+3 step 
+modificare Mail/sendEmail.php
+
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+class SendMail extends Mailable
+{
+    use Queueable, SerializesModels;
+    public $data;
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->from('notizie.lb@gmail.com')->subject('Richiesta Contatto')->view('dynamic_email_template')->with('data', $this->data);
+    }
+}
+------------------------------------------------------
+4 step 
+In resources/views/front/mail.blade.php, assicurarsi che il file sia corretto
+
+Inserire 
+@section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('status'))
+        <div class="alert alert-primary" role="alert">
+            {{ Session::get('status') }}
+            {{ Session::put('status', null) }}
+        </div>
+    @endif
+   
+   Modificare il form 
+ <form action="/contatti" method="post">
+ (ce ne è uno solo di form)
+ Non dimenticarsi @csrf
+ Verificare il name dei vari INPUT. 
+ (devono essere gli stessti che usero' nel Controller )
+ ------------------------------------------------------
+ 5 step 
+ web.php
+ //contatti
+ //nella pagina contatti si puo inviare una messagio all Admin usando
+//un account mail
+ Route::any('/contatti', [TemaController::class, 'contatti']);
+ ------------------------------------------------------
+6 step 
+TemaController.php
+
+Aggiungere 
+//invio mail
+use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
+
+Poi creare 
+public function contatti(Request $request)
+    {
+        //inserimento nel DB
+        // $message = new Message();
+        // $message->name = $request->input('name');
+        // $message->email = $request->input('email');
+        // $message->subject = $request->input('subject');
+        // $message->message = $request->input('message');
+        // $message->save();
+        //parte aggiunta per inviare email
+
+        $data = array(
+            'name'      =>  $request->input('Name'),
+             'email'      =>   $request->input('Email'),
+            'subject'    =>   $request->input('Subject'),
+            'message'   =>   $request->input('Message')
+
+
+        );
+
+
+        Mail::to('notizie.lb@gmail.com')->send(new SendMail($data));
+
+        return redirect('/mail')->with('status', 'email Inviata');
+    }
+    
+    qui viene usata il metodo new SendMail($data) attraverso oggetto new
+    ..........
+    bug in caso di problema SSL
+    andare a config/mail e modificare
+    ------------------------------------------------------
+    
+    6 step 
+    andare in resources/views e creare il file
+    dynamic_email_template.php
+    
+    (vedi codice )
+    ------------------------------------------------------
+    7 step: BUG per SSL 
+    
+   Inn caso  bug in caso di problema SSL
+    andare a config/mail e modificare
+    
+    'mailers' => [
+        'smtp' => [
+            'transport' => 'smtp',
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+           // 'auth_mode' => null,
+           'stream' => [
+            'ssl' => [
+                'allow_self_signed' => true,
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+            ],
+        ],
+           
+        ],
+                       
+------------------------------------------------------   
+ 
+ Consentire a google / gmail di usare app non sicure 
+ per accedere a account gmail  seguire questa procedura 
+ 
+ https://support.google.com/accounts/answer/185833
+ device: mac 
+ app:  http://127.0.0.1:8000/contatti
+
+

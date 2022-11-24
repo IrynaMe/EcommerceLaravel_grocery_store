@@ -8,6 +8,9 @@ use App\Models\Product;
 use App\Models\Order;
 use Session;
 use App\Cart;
+use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 
 
@@ -237,6 +240,32 @@ class TemaController extends Controller
             }
             return view('front.grazie');
         }
-          
+    //-----------------------------------MAIL-------------
+
+    public function contatti(Request $request)
+    {
+        //inserimento nel DB
+        // $message = new Message();
+        // $message->name = $request->input('name');
+        // $message->email = $request->input('email');
+        // $message->subject = $request->input('subject');
+        // $message->message = $request->input('message');
+        // $message->save();
+        //parte aggiunta per inviare email
+
+        $data = array(
+            'name'      =>  $request->input('Name'),
+             'email'      =>   $request->input('Email'),
+            'subject'    =>   $request->input('Subject'),
+            'message'   =>   $request->input('Message')
+
+
+        );
+
+
+        Mail::to('inero@mail.ru')->send(new SendMail($data));
+
+        return redirect('/mail')->with('status', 'email Inviata');
+    }         
       
 }
